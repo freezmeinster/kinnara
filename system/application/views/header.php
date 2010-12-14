@@ -8,11 +8,21 @@
   <script type="text/javascript" src="<?php echo base_url();?>style/jquery.js"></script>
   <script type="text/javascript" src="<?php echo base_url();?>style/jquery.validate.js"></script>
   <script type="text/javascript" src="<?php echo base_url();?>style/validate.js"></script>
+  <script type="text/javascript" src="<?php echo base_url();?>style/flowplayer.js"></script>
   <script type="text/javascript">
     _editor_icons = "Tango" 
   </script>
   <script type="text/javascript" src="<?php echo base_url();?>style/swfobject.js"></script>
   <script type="text/javascript" src="<?php echo base_url();?>/style/XinhaConfig.js"></script>
+   <script type="text/javascript">
+    $f("player", "<?php echo base_url();?>style/flowplayer-3.2.5.swf", {
+	plugins: {
+		audio: {
+			url: '<?php echo base_url();?>style/flowplayer.audio.swf'
+		}
+	}
+     }); 
+  </script>
 
 </head>
 <body>

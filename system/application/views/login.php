@@ -33,5 +33,7 @@ swfobject.embedSWF("<?php echo base_url();?>style/dewplayer-bubble.swf", "dewpla
 	</object>
 
 </div>
+
+<div id="player" style="display:block;width:600px;height:453px;"><a href="http://releases.flowplayer.org/data/fake_empire.mp3"></a></div>
 </div>
 </div>
