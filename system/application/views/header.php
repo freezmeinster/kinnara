@@ -4,14 +4,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
 <link href="<?php echo base_url();?>style/style.css" rel="stylesheet" type="text/css"/>  
-  <script type="text/javascript" src="<?php echo base_url();?>style/jquery-1.3.2.min.js"></script>
-  <script type="text/javascript" src="<?php echo base_url();?>style/htmlbox.min.js"></script>
-  <script type="text/javascript" src="<?php echo base_url();?>/style/XinhaLoader.js?lang=en&skin=blue-look"></script>
+  <script type="text/javascript" src="<?php echo base_url();?>style/XinhaLoader.js?lang=en&skin=xp-blue"></script>
+  <script type="text/javascript" src="<?php echo base_url();?>style/jquery.js"></script>
+  <script type="text/javascript" src="<?php echo base_url();?>style/jquery.validate.js"></script>
+  <script type="text/javascript" src="<?php echo base_url();?>style/validate.js"></script>
   <script type="text/javascript">
     _editor_icons = "Tango" 
   </script>
+  <script type="text/javascript" src="<?php echo base_url();?>style/swfobject.js"></script>
   <script type="text/javascript" src="<?php echo base_url();?>/style/XinhaConfig.js"></script>
-
 
 </head>
 <body>
@@ -24,5 +25,6 @@
 <div id="header_menu">
 <a href="<?php echo base_url();?>">Home</a> &nbsp; | &nbsp; 
 <a href="<?php echo site_url();?>/kinnara/register">Register</a> &nbsp; | &nbsp; 
+<a href="<?php echo site_url();?>/kinnara/login">Login</a> &nbsp; | &nbsp; 
 <a href="<?php echo site_url();?>/kinnara/about">About</a> &nbsp; | &nbsp; 
 </div>

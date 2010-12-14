@@ -31,3 +31,11 @@ body {margin:0; background:url(images/body_bg.png) repeat-x #38BACC; font-family
 #footer {color:#D8F2F4; text-align:center; font-size:10px; margin:2px 0 15px 0;}
 #footer a {color:#D8F2F4;}
 #footer a:hover {color:#B0E4E8;}
+
+#signupForm { width: 670px; }
+#signupForm label.error {
+	margin-left: 10px;
+	width: auto;
+	display: inline;
+}
+
