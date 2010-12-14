@@ -14,5 +14,9 @@ class System_view extends Model {
         $value = $row['value'];
         echo $value;  
     }
+
+    function system_info($item){
+       echo $item;
+    }
 }
 ?>

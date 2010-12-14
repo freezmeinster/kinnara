@@ -1,5 +1,4 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
@@ -11,7 +10,7 @@
 |	http://example.com/
 |
 */
-$config['base_url']	= "http://localhost/kinnara";
+$config['base_url']	= "http://192.168.70.248/kinnara";
 
 /*
 |--------------------------------------------------------------------------
