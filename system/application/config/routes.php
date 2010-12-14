@@ -25,7 +25,7 @@
 |
 | There are two reserved routes:
 |
-|	$route['default_controller'] = 'welcome';
+|	$route['default_controller'] =Admin 'welcome';
 |
 | This route indicates which controller class should be loaded if the
 | URI contains no data. In the above example, the "welcome" class
@@ -40,7 +40,7 @@
 |
 */
 
-$route['default_controller'] = "welcome";
+$route['default_controller'] = "kinnara";
 $route['scaffolding_trigger'] = "";
 
 
