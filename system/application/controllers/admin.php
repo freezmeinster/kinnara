@@ -40,6 +40,10 @@ class Admin extends Controller {
 		$this->load->view('register');
 		$this->load->view('footer');
 	}
+
+        function sysinfo($item){
+        $this->system_view->system_info($item);
+        }
 	
 	
 }

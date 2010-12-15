@@ -41,5 +41,12 @@ class Kinnara extends Controller {
 		$this->load->view('footer');
 	}
 	
+        function upload()
+	{
+		$this->load->view('header');
+		$this->load->view('sidebar');
+		$this->load->view('upload');
+		$this->load->view('footer');
+	}
 	
 }

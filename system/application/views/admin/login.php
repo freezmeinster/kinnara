@@ -15,7 +15,7 @@
 
 <script type="text/javascript">
 var flashvars = {
-  mp3: "http://192.168.70.248/mp3/hah.mp3"
+  mp3: "http://localhost/kinnara/mp3/hah.mp3"
 };
 var params = {
   wmode: "transparent"
@@ -34,27 +34,6 @@ swfobject.embedSWF("<?php echo base_url();?>style/dewplayer-bubble.swf", "dewpla
 
 </div>
 
-<div id="dewplayer_content2">
-	<object data="<?php echo base_url();?>style/dewplayer-bubble.swf" width="300" height="80" name="dewplayer" id="dewplayer" type="application/x-shockwave-flash">
-	<param name="movie" value="<?php echo base_url();?>style/dewplayer-bubble.swf" />
-	<param name="flashvars2" value="mp3=http://localhost/kinnara/mp3/hah.mp3" />
-	<param name="wmode" value="transparent" />
-	</object>
-	</div>
-<script type="text/javascript">
-var flashvars2 = {
-  mp3: "http://192.168.70.248/mp3/huh.mp3"
-};
-var params = {
-  wmode: "transparent"
-};
-var attributes = {
-  id: "dewplayer"
-};
-swfobject.embedSWF("<?php echo base_url();?>style/dewplayer-bubble.swf", "dewplayer_content2", "250", "65", "9.0.0", false, flashvars2, params, attributes);
-</script>
-
-<textarea id="myTextArea" name="myTextArea" rows="25" cols="50" style="width: 100%"></textarea>
-
+<div id="player" style="display:block;width:600px;height:453px;"><a href="http://releases.flowplayer.org/data/fake_empire.mp3"></a></div>
 </div>
 </div>
