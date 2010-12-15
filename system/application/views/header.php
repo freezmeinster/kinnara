@@ -2,16 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title></title>
+<title><?php $this->system_setting->get_setting('sitename');?> || <?php $this->system_setting->get_setting('slogan');?> </title>
   <link href="<?php echo base_url();?>style/style.css" rel="stylesheet" type="text/css"/>  
-  <!--<link href="<?php echo base_url();?>style/gauges.css" rel="stylesheet" type="text/css"/>   
-  
+  <link href="<?php echo base_url();?>style/gauges.css" rel="stylesheet" type="text/css"/>   
   <script type="text/javascript" src="<?php echo base_url();?>style/XinhaLoader.js?lang=en&skin=xp-blue"></script>
-  <script type="text/javascript" src="<?php echo base_url();?>style/swfobject.js"></script>
-  <script type="text/javascript" src="<?php echo base_url();?>/style/XinhaConfig.js"></script>
+ 
+  <script type="text/javascript" src="<?php echo base_url();?>style/jquery.js"></script>
+  <script type="text/javascript" src="<?php echo base_url();?>/style/XinhaConfig.js"></script> 
   <script type="text/javascript" src="<?php echo base_url();?>style/gauges.js"></script>  
   <script type="text/javascript" src="<?php echo base_url();?>style/jquery.validate.js"></script>
   <script type="text/javascript" src="<?php echo base_url();?>style/validate.js"></script> 
+  <script type="text/javascript" src="<?php echo base_url();?>style/swfobject.js"></script>
   <script type="text/javascript">
     _editor_icons = "Tango" 
   </script>
@@ -25,9 +26,6 @@
 	}
      }); 
   </script>
--->
- <script type="text/javascript" src="<?php echo base_url();?>style/jquery.js"></script>
-  <script type="text/javascript" src="<?php echo base_url();?>style/jquery.paginate.js"></script>
 </head>
 <body>
 <div id="container">

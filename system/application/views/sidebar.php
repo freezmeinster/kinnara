@@ -1,5 +1,5 @@
 <div id="main">
-<div id="sidebar"><!--
+<div id="sidebar">
 <h2>System Stat</h2>
 <script type="text/javascript">
 var auto_refresh = setInterval(
@@ -35,5 +35,5 @@ $('#free_storage').load('<?php echo site_url();?>/admin/sysinfo/free_storage').f
 			<div style="height: 0px; display: block;" class="gFill" id="pFill"></div>
   		<div class="gBackground"></div>
 		</div>
--->
+
 </div>
