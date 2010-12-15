@@ -1,39 +1,25 @@
 <div id="main">
 <div id="sidebar">
-<h2>System Stat</h2>
+<h2>Server Status</h2>
 <script type="text/javascript">
 var auto_refresh = setInterval(
 function ()
 {
-$('#main_mem').load('<?php echo site_url();?>/admin/sysinfo/main_memory').fadeIn("slow");
 $('#free_mem').load('<?php echo site_url();?>/admin/sysinfo/free_memory').fadeIn("slow");
-$('#main_storage').load('<?php echo site_url();?>/admin/sysinfo/main_storage').fadeIn("slow");
 $('#free_storage').load('<?php echo site_url();?>/admin/sysinfo/free_storage').fadeIn("slow");
-}, 100); 
+$('#uptime').load('<?php echo site_url();?>/admin/sysinfo/uptime').fadeIn("slow");
+}, 500); 
 </script>
 <table>
-<tr><td>Main Memory</td><td>:</td><td><div id="main_mem"></div></td>
-<tr><td>Main Storage</td><td>:</td><td><div id="main_storage"></div></td>
+<tr><td><h3>Memory</h3></td><td></td><td></td></tr>
+<tr><td>Main Memory</td><td>:</td><td><?php $this->system_view->system_info('main_memory');?></td>
+<tr><td>Free Memory</td><td>:</td><td><div id="free_mem"></div></td>
+<tr><td><h3>Storage</h3></td><td></td><td></td></tr>
+<tr><td>Main Storage</td><td>:</td><td><?php $this->system_view->system_info('main_storage');?></td>
+<tr><td>Free Storage</td><td>:</td><td><div id="free_storage"></div></td>
+<tr><td><h3>Uptime</h3></td><td></td><td></td></tr>
+<tr><td>Server uptime</td><td>:</td><td><div id="uptime"></div></td></tr>
+<tr><td><h3>User</h3></td><td></td><td></td></tr>
+<tr><td>Registerd User</td><td>:</td><td><?php $this->system_view->system_info('user');?> Persons</td></tr>
 </table>
-<br><br>
-<div class="gHolder">
-			<div class="gLabel">Free Memory</div>
-
-  		<div class="gGlass"></div>
-			<div style="color: rgb(255, 116, 51);" class="gBigNumber" id="pBigNumber" rel="22" alt=""><div id="free_mem"></div></div>
-			<div style="color: rgb(255, 116, 51);" class="gSmallNumber" id="pSmallNumber">%</div>
-			<div style="height: 0px; display: block;" class="gFill" id="pFill"></div>
-  		<div class="gBackground"></div>
-		</div>
-
-<div class="gHolder">
-			<div class="gLabel">Available Storage</div>
-
-  		<div class="gGlass"></div>
-			<div style="color: rgb(255, 116, 51);" class="gBigNumber" id="pBigNumber" rel="22" alt=""><div id="free_storage"></div></div>
-			<div style="color: rgb(255, 116, 51);" class="gSmallNumber" id="pSmallNumber">%</div>
-			<div style="height: 0px; display: block;" class="gFill" id="pFill"></div>
-  		<div class="gBackground"></div>
-		</div>
-
 </div>

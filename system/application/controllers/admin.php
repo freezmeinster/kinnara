@@ -9,36 +9,28 @@ class Admin extends Controller {
 	
 	function index()
 	{
-		$data['static'] = "index"; 
-		$this->load->view('header');
+		$this->load->view('admin/header');
 		$this->load->view('sidebar');
-		$this->load->view('body',$data);
-		$this->load->view('footer');;
+		$this->load->view('admin/index');
+		$this->load->view('admin/footer');;
 	}
 	
-	function login()
-	{
-		$this->load->view('header');
+	function edit_static($view = "")
+	{ 
+	       if( $view == ""){
+		$this->load->view('admin/header');
 		$this->load->view('sidebar');
-		$this->load->view('login');
-		$this->load->view('footer');
-	}
-	
-	function about()
-	{
-	        $data['static'] = "about"; 
-		$this->load->view('header');
-		$this->load->view('sidebar');
-		$this->load->view('body',$data);
-		$this->load->view('footer');
-	}
-	
-	function register()
-	{
-		$this->load->view('header');
-		$this->load->view('sidebar');
-		$this->load->view('register');
-		$this->load->view('footer');
+		$this->load->view('admin/edit_static');
+		$this->load->view('admin/footer');
+		}else if($view != ""){
+		  $content = $this->system_view->get_static_edit($view);
+		  $data['content'] = $content;
+		  $data['title'] = $view;
+		  $this->load->view('admin/header');
+		  $this->load->view('sidebar');
+		  $this->load->view('admin/edit_static_view',$data);
+		  $this->load->view('admin/footer');
+		}
 	}
 
         function sysinfo($item){

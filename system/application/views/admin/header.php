@@ -33,8 +33,5 @@
 <div id="slogan"><?php $this->system_setting->get_setting('slogan');?></div>
 </div>
 <div id="header_menu">
-<a href="<?php echo base_url();?>/admin/">Home</a> &nbsp; | &nbsp; 
-<a href="<?php echo site_url();?>/admin/users">Register</a> &nbsp; | &nbsp; 
-<a href="<?php echo site_url();?>/admin/settings">Login</a> &nbsp; | &nbsp; 
-<a href="<?php echo site_url();?>/admin/files">About</a> &nbsp; | &nbsp; 
+<a href="<?php echo site_url();?>/admin/">Home</a> &nbsp; | &nbsp; 
 </div>

@@ -6,12 +6,9 @@
   <link href="<?php echo base_url();?>style/style.css" rel="stylesheet" type="text/css"/>  
   <link href="<?php echo base_url();?>style/gauges.css" rel="stylesheet" type="text/css"/>   
   <script type="text/javascript" src="<?php echo base_url();?>style/XinhaLoader.js?lang=en&skin=xp-blue"></script>
- 
-  <script type="text/javascript" src="<?php echo base_url();?>style/jquery.js"></script>
   <script type="text/javascript" src="<?php echo base_url();?>/style/XinhaConfig.js"></script> 
+  <script type="text/javascript" src="<?php echo base_url();?>style/jquery.js"></script>
   <script type="text/javascript" src="<?php echo base_url();?>style/gauges.js"></script>  
-  <script type="text/javascript" src="<?php echo base_url();?>style/jquery.validate.js"></script>
-  <script type="text/javascript" src="<?php echo base_url();?>style/validate.js"></script> 
   <script type="text/javascript" src="<?php echo base_url();?>style/swfobject.js"></script>
   <script type="text/javascript">
     _editor_icons = "Tango" 

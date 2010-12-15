@@ -1,5 +1,6 @@
 body {margin:0; background:url(images/body_bg.png) repeat-x #38BACC; font-family:Arial, Helvetica, sans-serif;}
 
+h3 { color: #35A1A2;}
 #container {width:950px; margin:0 auto;}
 
 #header {height:95px;}
