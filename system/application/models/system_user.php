@@ -29,13 +29,13 @@ class System_user extends Model {
   
     function get_user_list(){
    	$this->db->reconnect();
-   	$query = $this->db->query("select * from user where id_user not like '1'");
+   	$query = $this->db->query("select username,name,strftime('%d-%m-%Y',reg_date) as date,baned_status,level from user where id_user not like '1'");
    	echo "<table class=\"sample\">\n";
     	echo "<tr><th>Username</th><th>Sure Name</th><th>Register Date</th><th>Baned</th><th>Level</th><th>Action</th></tr>\n";
    	foreach($query->result_array() as $row){
    	$username = $row['username'];
    	$name = $row['name'];
-   	$reg_date = $row['reg_date'];
+   	$reg_date = $row['date'];
    	$baned_status = $row['baned_status'];
    	$level = $row['level'];
    	  if ($baned_status == 0){

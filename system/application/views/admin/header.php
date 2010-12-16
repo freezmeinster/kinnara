@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title></title>
+<title><?php $this->system_setting->get_setting('sitename');?> || <?php $this->system_setting->get_setting('slogan');?> </title>
+ <link rel="shortcut icon" href="<?php echo base_url();?>style/favicon.png">
   <link href="<?php echo base_url();?>style/style.css" rel="stylesheet" type="text/css"/>  
   <link href="<?php echo base_url();?>style/facebox.css" rel="stylesheet" type="text/css"/>
   <script type="text/javascript" src="<?php echo base_url();?>style/XinhaLoader.js?lang=en&skin=xp-blue"></script>

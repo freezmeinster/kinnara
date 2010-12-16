@@ -20,7 +20,7 @@ h3 { color: #35A1A2;}
 #text h2 {font-size:24px; font-weight:normal; margin:24px 0 8px 0; color:#3096A8;}
 #text ol, #main ul {padding:0; margin:10px 0;}
 #text li {margin-left:40px;}
-#sidebar {width:180px; float:right; margin:6px 45px 30px 30px; display:inline;}
+#sidebar {width:180px; float:right; margin:6px 45px 30px 30px; display:inline; }
 #sidebar h3 {font-size:20px; font-weight:normal; margin:24px 0 8px 0; color:#3096A8;}
 #sidebar ul {margin:0px; padding:0px;}
 #sidebar li {list-style:none; padding:1px 0 1px 12px; background:url(images/li.png) 0px 8px no-repeat;}
