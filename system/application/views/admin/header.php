@@ -3,12 +3,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
-<link href="<?php echo base_url();?>style/style.css" rel="stylesheet" type="text/css"/>  
+  <link href="<?php echo base_url();?>style/style.css" rel="stylesheet" type="text/css"/>  
+  <link href="<?php echo base_url();?>style/facebox.css" rel="stylesheet" type="text/css"/>
   <script type="text/javascript" src="<?php echo base_url();?>style/XinhaLoader.js?lang=en&skin=xp-blue"></script>
   <script type="text/javascript" src="<?php echo base_url();?>style/jquery.js"></script>
   <script type="text/javascript" src="<?php echo base_url();?>style/jquery.validate.js"></script>
   <script type="text/javascript" src="<?php echo base_url();?>style/validate.js"></script>
   <script type="text/javascript" src="<?php echo base_url();?>style/flowplayer.js"></script>
+  <script type="text/javascript" src="<?php echo base_url();?>style/facebox.js"></script>
   <script type="text/javascript">
     _editor_icons = "Tango" 
   </script>
@@ -23,6 +25,15 @@
 	}
      }); 
   </script>
+   <script type="text/javascript">
+    jQuery(document).ready(function($) {
+      $('a[rel*=facebox]').facebox({
+        loadingImage : '<?php echo base_url();?>style/loading.gif',
+        closeImage   : '<?php echo base_url();?>style/closelabel.png'
+      })
+    })
+  </script>
+
 
 </head>
 <body>
@@ -34,4 +45,6 @@
 </div>
 <div id="header_menu">
 <a href="<?php echo site_url();?>/admin/">Home</a> &nbsp; | &nbsp; 
+<a href="<?php echo site_url();?>/admin/user">User</a> &nbsp; | &nbsp; 
+<a href="<?php echo site_url();?>/admin/videos">Video</a> &nbsp; | &nbsp; 
 </div>

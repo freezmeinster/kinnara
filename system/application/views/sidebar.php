@@ -20,6 +20,13 @@ $('#uptime').load('<?php echo site_url();?>/admin/sysinfo/uptime').fadeIn("slow"
 <tr><td><h3>Uptime</h3></td><td></td><td></td></tr>
 <tr><td>Server uptime</td><td>:</td><td><div id="uptime"></div></td></tr>
 <tr><td><h3>User</h3></td><td></td><td></td></tr>
-<tr><td>Registerd User</td><td>:</td><td><?php $this->system_view->system_info('user');?> Persons</td></tr>
+<tr><td>Registered</td><td>:</td><td><?php $this->system_view->system_info('user');?> Persons</td></tr>
 </table>
+<br>
+<?php
+	$admin = $this->uri->segment('1');
+	if ($admin == "admin"){
+          $this->load->view('admin/sidebar');
+	}
+?>
 </div>

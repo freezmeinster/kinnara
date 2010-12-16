@@ -95,6 +95,9 @@ class System_view extends Model {
 	    }else if ($raw_uptime > 3600 && $raw_uptime <= 86400){
 	    $time = "Hours";
 	    $hasil = ceil($raw_uptime/3600);
+	    }else if ($raw_uptime > 86400 && $raw_uptime <= 604800){
+	    $time = "Days";
+	    $hasil = ceil($raw_uptime/86400);
 	    }
          echo "$hasil $time";
        }else if ($item == "user"){
