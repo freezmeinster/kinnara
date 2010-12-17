@@ -4,11 +4,13 @@ class Admin extends Controller {
 
 	function Admin()
 	{
+		
 		parent::Controller();	
 	}
 	
 	function index()
 	{
+	        $this->system_user->check_session('0');
 		$this->load->view('admin/header');
 		$this->load->view('sidebar');
 		$this->load->view('admin/index');
@@ -17,6 +19,7 @@ class Admin extends Controller {
 	
 	function edit_static($view = "")
 	{ 
+	       $this->system_user->check_session('0');
 	       if( $view == ""){
 		$this->load->view('admin/header');
 		$this->load->view('sidebar');
@@ -35,6 +38,7 @@ class Admin extends Controller {
 	
 	function user()
 	{
+	        $this->system_user->check_session('0');
 		$this->load->view('admin/header');
 		$this->load->view('sidebar');
 		$this->load->view('admin/user');
@@ -43,6 +47,7 @@ class Admin extends Controller {
 	
 	function videos()
 	{
+	        $this->system_user->check_session('0');
 		$this->load->view('admin/header');
 		$this->load->view('sidebar');
 		$this->load->view('admin/video');

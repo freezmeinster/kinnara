@@ -15,7 +15,7 @@ class System_user extends Model {
         }else if ( $name == "" || $username == "" || $pass1 == "" || $pass2 == ""){
          	$this->system_view->error_report('Please fill Registration Form completely');
         }else if ($pass1 == $pass2 && $name != "" && $username != "" && $pass1 != "" && $pass2 != ""){
-		$enc_pass = sha1($pass1);
+		$enc_pass = $this->system_setting->hashing($pass1);
 		$this->db->reconnect();
 		$this->db->query("insert into user(username,password,name,reg_date) values('$username','$enc_pass','$name',date('now'))");
 		$message = "Congratulation $name, you has been registered succesfuly in our system, now login and start to enjoy our service";
@@ -27,6 +27,48 @@ class System_user extends Model {
 	}
     }
   
+    function check_login($username,$password,$before){
+	$enc_pass = $this->system_setting->hashing($password);
+	$this->db->reconnect();
+	$query = $this->db->query("select * from user where username like '$username' and password like '$enc_pass'");
+	if ($query->num_rows() > 0){
+	  $this->db->reconnect();
+	  $wew = $this->db->query("select * from user where username like '$username' and password like '$enc_pass' and baned_status = 0");
+	  if ($wew->num_rows() > 0){
+           $row = $query->row_array();
+           $data = array(
+                   'id_user'   => $row['id_user'],
+                   'username'  => $row['username'],
+                   'password'  => $row['password']
+               );
+           $this->session->set_userdata($data);
+           if ($before == ''){
+              redirect('kinnara');
+           }else redirect("kinnara/$before");
+          }else{
+           $message = "Your Account suspended with our administrator";
+	   $this->system_view->error_report($message);
+          }
+         }else {
+	   $message = "Sorry, Wrong username or password ";
+	   $this->system_view->error_report($message);
+	   $this->system_view->error_logging("Wrong user name or Password and user is $username ");
+        }
+    }
+    
+    function check_session($permission){
+    $user = $this->session->userdata('username');
+    $pass = $this->session->userdata('password');
+
+       if ($user != ''){
+           $this->db->reconnect();
+           $query = $this->db->query("select * from user where username like '$user' and password like '$pass' and level = $permission");
+          if ($query->num_rows() < 1){
+            redirect('kinnara/login');
+          }
+       }else redirect('kinnara/login');
+    }
+    
     function get_user_list(){
    	$this->db->reconnect();
    	$query = $this->db->query("select username,name,strftime('%d-%m-%Y',reg_date) as date,baned_status,level from user where id_user not like '1'");

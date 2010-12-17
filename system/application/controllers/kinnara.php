@@ -24,14 +24,6 @@ class Kinnara extends Controller {
 		$this->load->view('footer');
 	}
 	
-	function about()
-	{
-	        $data['static'] = "about"; 
-		$this->load->view('header');
-		$this->load->view('sidebar');
-		$this->load->view('body',$data);
-		$this->load->view('footer');
-	}
 	
 	function register()
 	{
@@ -48,5 +40,27 @@ class Kinnara extends Controller {
 		$this->load->view('upload');
 		$this->load->view('footer');
 	}
+	
+	 function fresh()
+	{
+		$this->load->view('header');
+		$this->load->view('sidebar');
+		$this->load->view('fresh');
+		$this->load->view('footer');
+	}
+	
+	 function play()
+	{
+		$this->load->view('header');
+		$this->load->view('sidebar');
+		$this->load->view('view');
+		$this->load->view('footer');
+	}
+	
+	function logout(){
+		$this->session->sess_destroy();
+		redirect('kinnara');
+	}
+	
 	
 }

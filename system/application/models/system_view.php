@@ -14,6 +14,18 @@ class System_view extends Model {
         $value = $row['value'];
         echo "$value";
     }
+   
+   function get_cat(){
+      echo "<select name=\"category\">";
+      $this->db->reconnect();
+      $query = $this->db->query("select * from category");
+	foreach($query->result_array() as $row){
+	$name = $row['name'];
+	$value = $row['id_cat'];
+	echo "<option value=\"$value\">$name</option>";
+	}
+      echo "</select>";
+    }
     
     function error_report($message){
       $data['static'] = "$message"; 
@@ -105,6 +117,18 @@ class System_view extends Model {
           $query = $this->db->query("select count(*) as total from user where id_user not like 1");
           $row = $query->row_array();
           echo $row['total'];
+       }else if ($item == "mp3"){
+       $directory = $this->system_setting->get_setting('mp3dir');
+       $dir = "$directory/";
+	if (glob("$dir*.mp3") != false)
+	{
+	$filecount = count(glob("$dir*.mp3"));
+	echo "$filecount Files";
+	}
+	else
+	{
+	echo "0 Files";
+	}
        }
     }
 }
