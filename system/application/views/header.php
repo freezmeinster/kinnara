@@ -5,11 +5,11 @@
 <title><?php echo $this->system_setting->get_setting('sitename');?> || <?php echo $this->system_setting->get_setting('slogan');?> </title>
   <link rel="shortcut icon" href="<?php echo base_url();?>style/favicon.png">
   <link href="<?php echo base_url();?>style/style.css" rel="stylesheet" type="text/css"/>  
-  <link href="<?php echo base_url();?>style/gauges.css" rel="stylesheet" type="text/css"/>   
+  <link href="<?php echo base_url();?>style/cupertino/jquery-ui.css" rel="stylesheet" type="text/css"/>   
   <script type="text/javascript" src="<?php echo base_url();?>style/XinhaLoader.js?lang=en&skin=xp-blue"></script>
   <script type="text/javascript" src="<?php echo base_url();?>/style/XinhaConfig.js"></script> 
   <script type="text/javascript" src="<?php echo base_url();?>style/jquery.js"></script>
-  <script type="text/javascript" src="<?php echo base_url();?>style/gauges.js"></script>  
+  <script type="text/javascript" src="<?php echo base_url();?>style/jquery-ui.js"></script>  
   <script type="text/javascript" src="<?php echo base_url();?>style/swfobject.js"></script>
   <script type="text/javascript">
       var xinha_plugins =
