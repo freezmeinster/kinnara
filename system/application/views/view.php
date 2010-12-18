@@ -2,6 +2,7 @@
 $id = $this->uri->segment('3');
 $this->db->reconnect();
 $query = $this->db->query("select * from music m,user u,category c where m.id_user=u.id_user and c.id_cat = m.id_cat and m.id_music = $id");
+$this->system_mp3->add_counter($id);
 $row = $query->row_array();
 $title = $row['m.title'];
 $artist = $row['m.artist'];
@@ -10,6 +11,7 @@ $genre = $row['c.name'];
 $desc = $row['m.desc'];
 $upload_by = $row['u.name'];
 $lyrics = $row['m.lyrics'];
+$view = $row['m.viewed'];
 ?>
 <div id="text">
 <div id="content" style="padding-left:30px;">
@@ -41,6 +43,7 @@ swfobject.embedSWF("<?php echo base_url();?>style/dewplayer-bubble.swf", "dewpla
 <tr><td>Artist</td><td>:</td><td><?php echo $artist;?></td></tr>
 <tr><td>Album</td><td>:</td><td><?php echo $album;?></td></tr>
 <tr><td>Genre</td><td>:</td><td><?php echo $genre;?></td></tr>
+<tr><td>Total Viewed</td><td>:</td><td><?php echo $view;?> times</td></tr>
 <tr><td>Description</td><td>:</td><td><?php echo $desc;?></td></tr>
 <tr><td>Upload By</td><td>:</td><td><?php echo $upload_by;?></td></tr>
 <tr><td>Lyrics</td><td>:</td><td><?php echo $lyrics;?></td></tr>

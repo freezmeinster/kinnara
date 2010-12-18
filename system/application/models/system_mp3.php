@@ -32,21 +32,64 @@ class System_mp3 extends Model {
       $limit = 5;
       $base = base_url();
       $site = site_url();
-      echo "<table><tr>";
+      $i=0;
+      echo "<table cellpadding=\"15\"><tr>";
       $this->db->reconnect();
       $query = $this->db->query("select * from music m, category c where c.id_cat = m.id_cat and m.permision = 0 or m.id_user in (SELECT distinct u.id_user FROM user u, join_group j, groups g WHERE j.id_user=u.id_user and j.id_group in (select id_group from join_group where id_user = $id_user)) and m.id_cat = c.id_cat LIMIT 30");
       foreach($query->result_array() as $row){
         $id = $row['m.id_music'];
         $title = $row['m.title'];
         $category = $row['c.name'];
+        if($i < $limit){
         echo "<td>";
 	  echo "<table>";
-	    echo "<tr><td><a href=\"$site/kinnara/play/$id\">$title</td></tr>";
-	    echo "<tr><td><img src=\"$base/style/images/$category.png\" height=\"70px\" title=\"$category\"></a></td></tr>";
+	    echo "<tr><td align=\"center\"><a href=\"$site/kinnara/play/$id\">$title</td></tr>";
+	    echo "<tr><td align=\"center\"><img src=\"$base/style/images/$category.png\" height=\"70px\" title=\"$category\"></a></td></tr>";
 	  echo "</table>";
         echo "</td>";
+         $i++;
+        }else{
+          echo "</tr><tr>";
+          $i=0;
+        }
       }
       echo "</tr></table>";
+    }
+    
+    function get_cat_legend(){
+      $limit = 5;
+      $base = base_url();
+      $site = site_url();
+      $i=0;
+      echo "<table cellpadding=\"15\"><tr>";
+      $this->db->reconnect();
+      $query = $this->db->query("select * from category");
+      foreach($query->result_array() as $row){
+        $category = $row['name'];
+        if($i < $limit){
+        echo "<td>";
+	  echo "<table>\n";
+	    echo "<tr><td align=\"center\"><img src=\"$base/style/images/$category.png\" height=\"70px\" title=\"$category\"></td></tr>\n";
+	    echo "<tr><td align=\"center\">$category</td></tr>\n";
+	  echo "</table>\n";
+        echo "</td>";
+        $i++;
+        }else{
+          echo "</tr><tr>";
+          $i=0;
+        }
+      }
+      echo "</tr></table>";
+    }
+    
+    function add_counter($id){
+     $this->db->reconnect();
+     $query = $this->db->query("select * from music where id_music = $id");
+     $row = $query->row_array();
+     $current_viewed = $row['viewed'];
+     $view = $current_viewed+1;
+     $this->db->reconnect();
+     $query = $this->db->query("update music set viewed=$view where id_music=$id");
     }
            
 }
