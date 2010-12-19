@@ -43,6 +43,7 @@ class Kinnara extends Controller {
 	
 	 function fresh()
 	{
+		$this->system_user->check_session('1');
 		$this->load->view('header');
 		$this->load->view('sidebar');
 		$this->load->view('fresh');
@@ -51,6 +52,7 @@ class Kinnara extends Controller {
 	
 	 function play()
 	{
+		$this->system_user->check_session('1');
 		$this->load->view('header');
 		$this->load->view('sidebar');
 		$this->load->view('view');

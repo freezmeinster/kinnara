@@ -2,7 +2,6 @@
 $id = $this->uri->segment('3');
 $this->db->reconnect();
 $query = $this->db->query("select * from music m,user u,category c where m.id_user=u.id_user and c.id_cat = m.id_cat and m.id_music = $id");
-$this->system_mp3->add_counter($id);
 $row = $query->row_array();
 $title = $row['m.title'];
 $artist = $row['m.artist'];

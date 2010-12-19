@@ -1,4 +1,5 @@
 <div id="text">
+<h1>Your Profile</h1>
 <?php
 $id = $this->session->userdata('id_user');
 if ($id == ''){
@@ -9,6 +10,8 @@ if ($id == ''){
   $this->load->view('profile');
 }
 ?>
+<h1>Your Music</h1>
+<?php $this->system_mp3->home_mp3_list($id);?>
 <div>
 	<object type="application/x-shockwave-flash" data="<?php echo base_url();?>style/dewplayer-playlist.swf" width="240" height="200" id="dewplayer" name="dewplayer">
 	<param name="wmode" value="transparent" />
@@ -17,5 +20,6 @@ if ($id == ''){
 	</object>
 
 </div>
+
 </div>
 </div>

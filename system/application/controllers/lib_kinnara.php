@@ -38,10 +38,12 @@ class Lib_kinnara extends Controller {
 	  
 	  function gen_url($id_mp3){
 	  $this->system_user->check_session('1');
+	  $this->system_mp3->add_counter($id_mp3);
 	  $this->system_mp3->gen_url($id_mp3);
 	  }
 	 
 	 function upload(){
+	 $this->system_user->check_session('1');
 	 $user = $this->session->userdata('id_user');
          $title = $this->input->post('title');
          $artist = $this->input->post('artist');
