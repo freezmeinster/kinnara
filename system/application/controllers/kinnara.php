@@ -59,6 +59,34 @@ class Kinnara extends Controller {
 		$this->load->view('footer');
 	}
 	
+	 function playlist()
+	{
+		$this->system_user->check_session('1');
+		$this->load->view('header');
+		$this->load->view('sidebar');
+		$this->load->view('playlist');
+		$this->load->view('footer');
+	}
+	
+	 function search()
+	{
+		$this->system_user->check_session('1');
+		$this->load->view('header');
+		$this->load->view('sidebar');
+		$this->load->view('search');
+		$this->load->view('footer');
+	}
+	
+	 function group()
+	{
+		$this->system_user->check_session('1');
+		$this->load->view('header');
+		$this->load->view('sidebar');
+		$this->load->view('group');
+		$this->load->view('footer');
+	}
+	
+	
 	function logout(){
 		$this->session->sess_destroy();
 		redirect('kinnara');

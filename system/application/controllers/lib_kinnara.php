@@ -41,6 +41,38 @@ class Lib_kinnara extends Controller {
 	  $this->system_mp3->add_counter($id_mp3);
 	  $this->system_mp3->gen_url($id_mp3);
 	  }
+	  
+	  function edit_profile($id){
+	  $name = $this->input->post('name');
+	  $email = $this->input->post('email');
+	  $phone = $this->input->post('phone');
+	  $web = $this->input->post('web');
+	  $this->system_user->edit_user($id,$name,$email,$phone,$web);
+	  $this->system_view->success_report("Your Profile has been Upadated");
+	  }
+	  
+	  function edit_password($id){
+	  $password = $this->input->post('password');
+	  $confirm_password = $this->input->post('confirm_password');
+	  $this->system_user->edit_password($id,$password,$confirm_password);
+	  $this->system_view->success_report("Your Password has been Upadated");
+	  }
+	  
+	  function add_playlist($id){
+	  $this->system_user->check_session('1');
+	  $site = site_url();
+	  $id = $this->session->userdata('id_user');
+	  $nguk = $this->db->query("select * from playlist where id_user = $id");
+	  if ($nguk->num_rows() < 1){
+	  echo "Sorry , You don't have a Playlist , create one <a href=\"$site/kinnara/playlist\">here</a>";
+	  }else{
+	  $query = $this->db->query("select * from music where id_music = $id");
+	  $row = $query->row_array();
+	  $name = $row['title'];
+	  $artist = $row['artist'];
+	  echo "Are you sure to add $name by $artist to your playlist ?";
+	  }
+	  }
 	 
 	 function upload(){
 	 $this->system_user->check_session('1');

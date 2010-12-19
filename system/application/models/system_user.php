@@ -6,9 +6,13 @@ class System_user extends Model {
         parent::Model();
     }
     
-    function add_user($name,$username,$pass1,$pass2){
+    function add_user($a,$b,$c,$d){
         $this->db->reconnect();
-        $query = $this->db->query("select * from user where username like '%$username%' or name like '%$name%'");
+        $name = strip_quotes($a);
+        $username = strip_quotes($b);
+        $pass1 = strip_quotes($c);
+        $pass2 = strip_quotes($d);
+        $query = $this->db->query("select * from user where username like \"%$username%\" or name like \"%$name%\"");
         $row = $query->num_rows();
         if($pass1 != $pass2){
         	$this->system_view->error_report('Password Not match');
@@ -27,13 +31,41 @@ class System_user extends Model {
 	}
     }
   
-    function check_login($username,$password,$before){
+    function edit_user($a,$b,$c,$d,$e){
+    $id = strip_quotes($a);
+    $name = strip_quotes($b);
+    $email = strip_quotes($c);
+    $phone = strip_quotes($d);
+    $web = strip_quotes($e);
+    $this->db->reconnect();
+    $this->db->query("update user set name='$name',email='$email',phone='$phone',website='$web' where id_user = $id");
+    }
+    
+    function edit_password($a,$b,$c){
+    $id = strip_quotes($a);
+    $password = strip_quotes($b);
+    $confirm_password = strip_quotes($c);
+    $enc_pass = $this->system_setting->hashing($password);
+    if ( $password == "" || $confirm_password == "" ){
+      $this->system_view->error_report("Please Fill Both Password");
+    }else if ($password != $confirm_password){
+      $this->system_view->error_report("Password Not Match");
+    }else if ($password != "" && $confirm_password != "" && $password == $confirm_password){
+      $this->db->reconnect();
+      $this->db->query("update user set password='$enc_pass' where id_user = $id");
+    } 
+    }
+    
+    function check_login($a,$b,$c){
+	$username = strip_quotes($a); 
+	$password =  strip_quotes($b);
+	$before = strip_quotes($c);
 	$enc_pass = $this->system_setting->hashing($password);
 	$this->db->reconnect();
-	$query = $this->db->query("select * from user where username like '$username' and password like '$enc_pass'");
+	$query = $this->db->query("select * from user where username like \"$username\" and password like \"$enc_pass\"");
 	if ($query->num_rows() > 0){
 	  $this->db->reconnect();
-	  $wew = $this->db->query("select * from user where username like '$username' and password like '$enc_pass' and baned_status = 0");
+	  $wew = $this->db->query("select * from user where username like \"$username\" and password like \"$enc_pass\" and baned_status = 0");
 	  if ($wew->num_rows() > 0){
            $row = $query->row_array();
            $data = array(
@@ -64,9 +96,13 @@ class System_user extends Model {
            $this->db->reconnect();
            $query = $this->db->query("select * from user where username like '$user' and password like '$pass' and level = $permission");
           if ($query->num_rows() < 1){
+          $this->session->sess_destroy();
             redirect('kinnara/login');
           }
-       }else redirect('kinnara/login');
+       }else {
+       $this->session->sess_destroy();
+       redirect('kinnara/login');
+       }
     }
     
     function get_user_list(){
@@ -97,7 +133,6 @@ class System_user extends Model {
    	echo "</table>\n";
     }
     
-    
     function get_video_list(){
    	$this->db->reconnect();
    	$query = $this->db->query("select * from user where id_user not like '1'");
@@ -114,7 +149,8 @@ class System_user extends Model {
    	  }else if ($baned_status == 1){
    	     $baned = "<a href=\"\" rel=\"facebox\">Yes</a>";
    	  }
-       	
+       	$this->db->reconnect();
+    $this->db->query("update user set name='$name',email='$email',phone='$phone',website='$web' where id_user = $id");
        	  if ($level == 0){
    	     $lev = "<a href=\"\" rel=\"facebox\">Admin</a>";
    	  }else if ($level == 1){

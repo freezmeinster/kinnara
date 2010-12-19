@@ -6,7 +6,9 @@ class System_mp3 extends Model {
         parent::Model();
     }
     
-    function gen_url($id_mp3){
+    function gen_url($a){
+    $id_mp3 = strip_quotes($a);
+    $this->system_user->check_session(1);
     $stream_url = $this->system_setting->get_setting('stream_url');
     $this->db->reconnect();
     $query = $this->db->query("select * from music where id_music = $id_mp3");
@@ -18,35 +20,51 @@ class System_mp3 extends Model {
      }else $this->system_view->error_report("Sorry we could find your music with id $id_mp3");
     }
     
-    function register_music($user,$filename,$title,$cat,$perm,$desc,$lyrics,$artist,$album){
+    function register_music($a,$b,$c,$d,$e,$f,$g,$h,$i){
+       $user = strip_quotes($a);
+       $filename = strip_quotes($b);
+       $title = strip_quotes($c);
+       $cat = strip_quotes($d);
+       $perm = strip_quotes($e);
+       $desc = strip_quotes($f);
+       $lyrics = strip_quotes($g);
+       $artist = strip_quotes($h);
+       $album = strip_quotes($i);
+       $this->system_user->check_session(1);
        $enc_filename = $this->system_setting->hashing($filename);
        $target_upload = $this->system_setting->get_setting('mp3dir');
-       $old_file = "$target_upload/$filename.mp3";
+       $old_file = "$target_upload/$filename";
        $new_file = "$target_upload/$enc_filename.mp3";
-       shell_exec("mv $old_file $new_file");
+       shell_exec("mv \"$old_file\".* $new_file");
        $this->db->reconnect();
-       $this->db->query("insert into music(id_user,title,desc,permision,file_name,uploaded_date,lastchange_date,lyrics,id_cat,artist,album) values($user,'$title','$desc','$perm','$enc_filename',date('now'),date('now'),'$lyrics','$cat','$artist','$album')");
+       $this->db->query("insert into music(id_user,title,desc,permision,file_name,uploaded_date,lastchange_date,lyrics,id_cat,artist,album) values($user,\"$title\",\"$desc\",\"$perm\",\"$enc_filename\",date('now'),date('now'),\"$lyrics\",\"$cat\",\"$artist\",\"$album\")");
     }
     
     function get_mp3_list($id_user){
+      $this->system_user->check_session(1);
       $limit = 5;
       $base = base_url();
       $site = site_url();
       $i=0;
-      echo "<table cellpadding=\"15\"><tr>";
+      echo "<table cellpadding=\"15\" id=\"content\"><tr>";
       $this->db->reconnect();
-      $query = $this->db->query("select * from music m, category c where c.id_cat = m.id_cat and m.permision = 0 or m.id_user in (SELECT distinct u.id_user FROM user u, join_group j, groups g WHERE j.id_user=u.id_user and j.id_group in (select id_group from join_group where id_user = $id_user)) and m.id_cat = c.id_cat order by uploaded_date desc LIMIT 30");
+      $query = $this->db->query("select * from music m, category c,user u where u.id_user = m.id_user and c.id_cat = m.id_cat and m.permision = 0 or m.id_user in (SELECT distinct u.id_user FROM user u, join_group j, groups g WHERE j.id_user=u.id_user and j.id_group in (select id_group from join_group where id_user = $id_user)) and m.id_cat = c.id_cat and u.id_user = m.id_user order by uploaded_date desc LIMIT 30");
       foreach($query->result_array() as $row){
         $id = $row['m.id_music'];
         $title = $row['m.title'];
         $category = $row['c.name'];
+        $artist = $row['m.artist'];
+        $upload = $row['u.name'];
+        $viewed = $row['m.viewed'];
         if($i < $limit){
-        echo "<td>";
+        echo "<td>\n";
 	  echo "<table>";
-	    echo "<tr><td align=\"center\"><a href=\"$site/kinnara/play/$id\">$title</td></tr>";
-	    echo "<tr><td align=\"center\"><img src=\"$base/style/images/$category.png\" height=\"70px\" title=\"$category\"></a></td></tr>";
+	    echo "<tr><td align=\"center\"><a href=\"$site/kinnara/play/$id\">$title</td></tr>\n";
+	    echo "<tr><td align=\"center\"><img src=\"$base/style/images/$category.png\" height=\"70px\" tooltip=\"Uploaded By <br>$upload <br><br> Viewed <br>$viewed Times\"></a></td></tr>\n";
+	    echo "<tr><td align=\"center\">By $artist</td></tr>\n";
+	    echo "<tr><td align=\"center\"><a href=\"$site/lib_kinnara/add_playlist/$id\" class=\"ajax\">Add To Playlist</a></td></tr>\n";
 	  echo "</table>";
-        echo "</td>";
+        echo "</td>\n";
          $i++;
         }else{
           echo "</tr><tr>";
@@ -57,6 +75,7 @@ class System_mp3 extends Model {
     }
     
       function home_mp3_list($id_user){
+      $this->system_user->check_session(1);
       $limit = 5;
       $base = base_url();
       $site = site_url();
@@ -85,6 +104,7 @@ class System_mp3 extends Model {
     }
     
     function get_cat_legend(){
+    $this->system_user->check_session(1);
       $limit = 5;
       $base = base_url();
       $site = site_url();
@@ -111,6 +131,7 @@ class System_mp3 extends Model {
     }
     
     function add_counter($id){
+    $this->system_user->check_session(1);
      $this->db->reconnect();
      $query = $this->db->query("select * from music where id_music = $id");
      $row = $query->row_array();

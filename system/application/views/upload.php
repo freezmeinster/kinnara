@@ -16,5 +16,6 @@ $(function() {
 <tr><td colspan="3"><input id="button" type="submit" value="Upload"></td></tr>
 </table>
 </form>
+
 </div>
 </div> 

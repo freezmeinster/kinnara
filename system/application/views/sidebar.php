@@ -22,7 +22,7 @@ $('#total_files').load('<?php echo site_url();?>/admin/sysinfo/mp3').fadeIn("slo
 <tr><td><h3>Uptime</h3></td><td></td><td></td></tr>
 <tr><td>Server uptime</td><td>:</td><td><div id="uptime"></div></td></tr>
 <tr><td><h3>User</h3></td><td></td><td></td></tr>
-<tr><td>Registered</td><td>:</td><td><?php $this->system_view->system_info('user');?> Persons</td></tr>
+<tr><td>Registered</td><td>:</td><td><?php $this->system_view->system_info('user');?> People</td></tr>
 </table>
 <br>
 <?php
