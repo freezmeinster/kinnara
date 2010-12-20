@@ -40,15 +40,17 @@ class System_mp3 extends Model {
        $this->db->query("insert into music(id_user,title,desc,permision,file_name,uploaded_date,lastchange_date,lyrics,id_cat,artist,album) values($user,\"$title\",\"$desc\",\"$perm\",\"$enc_filename\",date('now'),date('now'),\"$lyrics\",\"$cat\",\"$artist\",\"$album\")");
     }
     
-    function get_mp3_list($id_user){
+    function get_mp3_list($id_user,$page){
       $this->system_user->check_session(1);
       $limit = 5;
+      $content_limit = 30;
       $base = base_url();
       $site = site_url();
+      $hoi = $page*$content_limit;
       $i=0;
       echo "<table cellpadding=\"15\" id=\"content\"><tr>";
       $this->db->reconnect();
-      $query = $this->db->query("select * from music m, category c,user u where u.id_user = m.id_user and c.id_cat = m.id_cat and m.permision = 0 or m.id_user in (SELECT distinct u.id_user FROM user u, join_group j, groups g WHERE j.id_user=u.id_user and j.id_group in (select id_group from join_group where id_user = $id_user)) and m.id_cat = c.id_cat and u.id_user = m.id_user order by uploaded_date desc LIMIT 30");
+      $query = $this->db->query("select * from music m, category c,user u where u.id_user = m.id_user and c.id_cat = m.id_cat and m.permision = 0 or m.id_user in (SELECT distinct u.id_user FROM user u, join_group j, groups g WHERE j.id_user=u.id_user and j.id_group in (select id_group from join_group where id_user = $id_user)) and m.id_cat = c.id_cat and u.id_user = m.id_user order by uploaded_date desc LIMIT $content_limit OFFSET $hoi");
       foreach($query->result_array() as $row){
         $id = $row['m.id_music'];
         $title = $row['m.title'];
@@ -72,6 +74,15 @@ class System_mp3 extends Model {
         }
       }
       echo "</tr></table>";
+      $query2 = $this->db->query("select * from music m, category c,user u where u.id_user = m.id_user and c.id_cat = m.id_cat and m.permision = 0 or m.id_user in (SELECT distinct u.id_user FROM user u, join_group j, groups g WHERE j.id_user=u.id_user and j.id_group in (select id_group from join_group where id_user = $id_user)) and m.id_cat = c.id_cat and u.id_user = m.id_user order by uploaded_date desc");
+      $row = $query2->num_rows();
+      $hah = ceil($row/$content_limit);
+      echo "Page";
+      for ($m = 1;$m <= $hah; $m++){
+      $wew = $m-1;
+      echo "  <a href=\"$site/kinnara/fresh/".$wew."\">$m</a>";
+      }
+      
     }
     
       function home_mp3_list($id_user){

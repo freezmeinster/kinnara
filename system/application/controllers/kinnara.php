@@ -41,12 +41,13 @@ class Kinnara extends Controller {
 		$this->load->view('footer');
 	}
 	
-	 function fresh()
-	{
+	 function fresh($page="0")
+	{ 
+	        $data['page']= $page;
 		$this->system_user->check_session('1');
 		$this->load->view('header');
 		$this->load->view('sidebar');
-		$this->load->view('fresh');
+		$this->load->view('fresh',$data);
 		$this->load->view('footer');
 	}
 	

@@ -55,7 +55,7 @@ echo "<tr><td>Email</td><td>:</td><td><input class=\"input\" type=\"text\" name=
 echo "<tr><td>Phone</td><td>:</td><td><input class=\"input\" type=\"text\" name=\"phone\" value=\"$phone\"></td></tr>\n";
 echo "<tr><td>Web Site</td><td>:</td><td><input class=\"input\" type=\"text\" name=\"web\" value=\"$website\"></td></tr>\n";
 echo "</table>\n";
-echo "<input type=\"submit\" class=\"button\" id=\"update_profile\" value=\"Update\"> <input type=\"button\" class=\"button\" id=\"edit_cencel\" value=\"Cencel\">\n";
+echo "<input type=\"submit\" class=\"button\" id=\"update_profile\" value=\"Update\"> <input type=\"button\" class=\"button\" id=\"edit_cencel\" value=\"Cancel\">\n";
 echo "</form>\n";
 echo "</div>\n";
 
@@ -65,7 +65,7 @@ echo "<table cellpadding=\"10\">\n";
 echo "<tr><td>New Password</td><td>:</td><td><input class=\"input\" type=\"password\" name=\"password\"></td></tr>\n";
 echo "<tr><td>Confirm Password</td><td>:</td><td><input class=\"input\" type=\"password\" name=\"confirm_password\"></td></tr>\n";
 echo "</table>\n";
-echo "<input type=\"submit\" class=\"button\" id=\"change_password\" value=\"Update\"> <input type=\"button\" class=\"button\" id=\"cencel\" value=\"Cencel\">\n";
+echo "<input type=\"submit\" class=\"button\" id=\"change_password\" value=\"Update\"> <input type=\"button\" class=\"button\" id=\"cencel\" value=\"Cancel\">\n";
 echo "</form>\n";
 echo "</div>\n";
 
