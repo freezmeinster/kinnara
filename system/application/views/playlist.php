@@ -1,14 +1,17 @@
 <div id="text">
 <h1 padding="50px">Your Play List</h1>
-<div>
-	<object type="application/x-shockwave-flash" data="<?php echo base_url();?>style/dewplayer-playlist.swf" width="240" height="200" id="dewplayer" name="dewplayer">
-	<param name="wmode" value="transparent" />
-	<param name="movie" value="<?php echo base_url();?>style/dewplayer-playlist.swf" />
-	<param name="flashvars" value="showtime=true&autoreplay=true&xml=<?php echo base_url();?>style/playlist.xml" />
-	</object>
+<h3>Create New Playlist</h3>
+<form action="<?php echo site_url();?>/lib_kinnara/create_playlist/" method="POST">
+<table cellpadding="10">
+<tr><td>Playlist Name</td><td>:</td><td><input name="name" clas="input" type="text" class="input"></td></tr>
+<tr><td colspan="3"><input type="submit" value="Create Playlist" class="button"></td></tr>
+</table>
+</form>
 
-</div>
-
-
+<h3>Available Playlist</h3>
+<?php 
+$id = $GLOBALS['id'];
+$this->system_mp3->get_playlist_list($id);
+?>
 </div>
 </div>

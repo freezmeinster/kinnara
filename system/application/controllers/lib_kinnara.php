@@ -61,17 +61,35 @@ class Lib_kinnara extends Controller {
 	  function add_playlist($id){
 	  $this->system_user->check_session('1');
 	  $site = site_url();
-	  $id = $this->session->userdata('id_user');
-	  $nguk = $this->db->query("select * from playlist where id_user = $id");
+	  $id_user = $this->session->userdata('id_user');
+	  $nguk = $this->db->query("select * from playlist where id_user = $id_user");
 	  if ($nguk->num_rows() < 1){
 	  echo "Sorry , You don't have a Playlist , create one <a href=\"$site/kinnara/playlist\">here</a>";
 	  }else{
 	  $query = $this->db->query("select * from music where id_music = $id");
 	  $row = $query->row_array();
+	  $id_music = $row['id_music'];
 	  $name = $row['title'];
 	  $artist = $row['artist'];
-	  echo "Are you sure to add $name by $artist to your playlist ?";
+	  $hah = $this->db->query("select * from playlist where id_user = $id_user");
+	  echo "<form action=\"$site/lib_kinnara/add_music_playlist/\" method=\"POST\"> Choose a playlist: <select name=\"playlist\">";
+	  foreach($hah->result_array() as $row){
+	  $id_playlist = $row['id_playlist'];
+	  $ngek = $row['name'];
+	  echo "<option value=\"$id_playlist\">$ngek</option>";
 	  }
+	  
+	  echo "</select><input type=\"hidden\" name=\"id_music\" value=\"$id_music\"><br><br>";
+	  echo "Are you sure to add <strong>$name</strong> by <strong>$artist</strong> to your playlist ?<br><br>";
+	  echo "<input type=\"submit\" value=\"Yes\" >";
+	  echo "</form>";
+	  }
+	  }
+	  
+	  function add_music_playlist(){
+	  $playlist = $this->input->post('playlist');
+	  $id_music = $this->input->post('id_music');
+	  $this->system_mp3->add_to_playlist($playlist,$id_music);
 	  }
 	 
 	 function upload(){
@@ -100,6 +118,11 @@ class Lib_kinnara extends Controller {
 		}	
     
     }
-	  
-		
+    
+    function create_playlist(){
+    $id = $this->session->userdata('id_user');
+    $name = $this->input->post('name');
+    $this->system_mp3->create_playlist($id,$name);
+    }
+	  	
 }

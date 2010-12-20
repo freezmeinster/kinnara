@@ -151,6 +151,39 @@ class System_mp3 extends Model {
      $this->db->reconnect();
      $query = $this->db->query("update music set viewed=$view where id_music=$id");
     }
+    
+    function create_playlist($id,$name){
+    $this->db->reconnect();
+    $query = $this->db->query("select * from playlist where id_user = $id and name like \"%$name%\"");
+    $row = $query->num_rows();
+    if ($row > 0){
+     $this->system_view->error_report("Sorry Playlist $name already exist, Please user other name !");
+    }else if($name == ''){
+     $this->system_view->error_report("Please fill Playlist name !");
+    }else if( $name != ''){
+      $this->db->reconnect();
+      $this->db->query("insert into playlist(id_user,name,create_date) values($id,\"$name\",date('now'))");
+      $this->system_view->success_report("Playlist $name has been successfuly created !");
+    }
+    }
+    
+    function get_playlist_list($id){
+    $this->db->reconnect();
+    $query = $this->db->query("select * from playlist where id_user = $id");
+    }
+    
+    function add_to_playlist($playlist,$id_music){
+    $this->db->reconnect();
+    $a = $this->db->query("select * from listening where id_playlist = $playlist and id_music = $id_music");
+    $row = $a->num_rows();
+     if ($row > 0 ){
+        $this->system_view->error_report("This Music already exist in playlist");
+     }else if ($row == 0 ){
+	  $this->db->reconnect();
+	  $this->db->query("insert into listening(id_playlist,id_music) values($playlist,$id_music)");
+	  $this->system_view->success_report("Music has been successfuly added to playlist");
+     }
+    }
            
 }
 

@@ -42,6 +42,13 @@
         });
     });
     </script>
+    
+    <script type="text/javascript">
+$(function() {
+    $(".button").button();
+	});
+</script>
+
 <script type="text/javascript">  
 tinyMCE.init({
 		// General options
