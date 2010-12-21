@@ -87,6 +87,15 @@ class Kinnara extends Controller {
 		$this->load->view('footer');
 	}
 	
+	 function listen($id_playlist)
+	{
+	        $data['id_playlist'] = $id_playlist;
+		$this->system_user->check_session('1');
+		$this->load->view('header');
+		$this->load->view('sidebar');
+		$this->load->view('listen',$data);
+		$this->load->view('footer');
+	}
 	
 	function logout(){
 		$this->session->sess_destroy();

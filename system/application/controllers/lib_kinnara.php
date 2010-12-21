@@ -120,9 +120,32 @@ class Lib_kinnara extends Controller {
     }
     
     function create_playlist(){
+    $this->system_user->check_session('1');
     $id = $this->session->userdata('id_user');
     $name = $this->input->post('name');
     $this->system_mp3->create_playlist($id,$name);
+    }
+    
+    function del_playlist($id_playlist){
+    $this->system_user->check_session('1');
+    $this->db->reconnect();
+    $this->db->query("delete from playlist where id_playlist = $id_playlist");
+    $this->db->query("delete from listening where id_playlist = $id_playlist");
+    $this->system_view->success_report("Playlist deleted successfuly");
+    }
+    
+    function empty_playlist($id_playlist){
+    $this->system_user->check_session('1');
+    $this->db->reconnect();
+    $this->db->query("delete from listening where id_playlist = $id_playlist");
+    $this->system_view->success_report("Playlist truncated successfuly ");
+    }
+    
+    function del_mp3_from_playlist($id_playlist,$id_music){
+    $this->system_user->check_session('1');
+    $this->db->reconnect();
+    $this->db->query("delete from listening where id_playlist = $id_playlist and id_music=$id_music");
+    $this->system_view->success_report("One Music successfuly deleted from playlist ");
     }
     
     function get_xml($id){

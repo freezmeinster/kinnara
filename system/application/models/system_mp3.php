@@ -174,16 +174,17 @@ class System_mp3 extends Model {
     	foreach($query->result_array() as $row){
     	     $name = $row['name'];
     	     $id_playlist = $row['id_playlist'];
-    	     echo "<h4><a href=\"$site/listen/$id_playlist\">$name</h4> <a href=\"\">Delete Playlist</a> <a href=\"\">Empty Playlist</a>";
+    	     echo "<h4><a href=\"$site/kinnara/listen/$id_playlist\">$name</h4> <a href=\"$site/lib_kinnara/del_playlist/$id_playlist\">Delete Playlist</a> <a href=\"$site/lib_kinnara/empty_playlist/$id_playlist\">Empty Playlist</a>";
     	     echo "<table id=\"perlu\" cellpadding=\"5\">";
-    	     echo "<tr><th>No</th><th>Music</th><th>Action</th></tr>";
+    	     echo "<tr><th>No</th><th>Music</th><th>Artist</th><th>Action</th></tr>";
     	     $this->db->reconnect();
     	     $b = $this->db->query("select * from listening l,music m where l.id_music = m.id_music and l.id_playlist = $id_playlist");
     	     $m = 1;
     	     foreach($b->result_array() as $c){
     	     	$title = $c['m.title']; 
     	     	$id_musics = $c['m.id_music'];
-    	     	echo "<tr><td>$m</td><td>$title</td><td><a href=\"$site/lib_kinnara/del_mp3_from_playlist/$id_musics\">Delete</a></td></tr>";
+    	     	$artist = $c['m.artist'];
+    	     	echo "<tr><td>$m</td><td>$title</td><td>$artist</td><td><a href=\"$site/lib_kinnara/del_mp3_from_playlist/$id_playlist/$id_musics\">Delete</a></td></tr>";
     	     	$m++;
     	     }
     	     echo "</table>";
@@ -204,44 +205,41 @@ class System_mp3 extends Model {
     }
     
     function get_xml($id_playlist){
+    $site = site_url();
     $this->db->reconnect();
     $query = $this->db->query("select * from music m,listening l, playlist p where m.id_music = l.id_music and p.id_playlist = l.id_playlist and l.id_playlist = $id_playlist");
     $hah = $query->row_array();
     $name = $hah['p.name'];
-    foreach($query->result_array() as $row){
-    }
-      $xml = new MY_Xml_writer;
-    $xml->setRootName('my_store');
+ 
+    $xml = new MY_Xml_writer;
+    $xml->setRootName('playlist');
     $xml->initiate();
     
-    // Start branch 1
-    $xml->startBranch('cars');
+    $xml->addNode('title', $name);
+    $xml->addNode('creator', 'Kinnara');
+    $xml->addNode('link', 'http://192.168.70.248/kinnara');
+    $xml->addNode('info', 'Kinnara Upload, Listen and Enjoy It Forever');
+    $xml->addNode('image', '');
+
+    $xml->startBranch('trackList');
     
-    // Set branch 1-1 and its nodes
-    $xml->startBranch('car', array('country' => 'usa')); // start branch 1-1
-    $xml->addNode('make', 'Ford');
-    $xml->addNode('model', 'T-Ford', array(), true);
+    foreach($query->result_array() as $row){
+    $title = $row['m.title'];
+    $id_music = $row['m.id_music'];
+    $artist = $row['m.artist'];
+    $album = $row['m.album'];
+    $xml->startBranch('track'); 
+    $xml->addNode('location', "$site/lib_kinnara/gen_url/$id_music");
+    $xml->addNode('creator', $artist);
+    $xml->addNode('album', $album);
+    $xml->addNode('title',$title);
+    $xml->addNode('annotation', '');
+    $xml->addNode('duration', '');
+    $xml->addNode('image', '');
+    $xml->addNode('info', '');
     $xml->endBranch();
-    
-    // Set branch 1-2 and its nodes
-    $xml->startBranch('car', array('country' => 'Japan')); // start branch
-    $xml->addNode('make', 'Toyota');
-    $xml->addNode('model', 'Corolla', array(), true);
-    $xml->endBranch();
-    
-    // End branch 1
-    $xml->endBranch();
-    
-    // Start branch 2
-    $xml->startBranch('bikes'); // start branch
-    
-    // Set branch 2-1  and its nodes
-    $xml->startBranch('bike', array('country' => 'usa')); // start branch
-    $xml->addNode('make', 'Harley-Davidson');
-    $xml->addNode('model', 'Soft tail', array(), true);
-    $xml->endBranch();
-    
-    // End branch 2
+     }
+     
     $xml->endBranch();
     
     // Print the XML to screen
