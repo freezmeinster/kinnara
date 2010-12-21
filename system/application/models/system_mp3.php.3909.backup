@@ -202,52 +202,6 @@ class System_mp3 extends Model {
 	  $this->system_view->success_report("Music has been successfuly added to playlist");
      }
     }
-    
-    function get_xml($id_playlist){
-    $this->db->reconnect();
-    $query = $this->db->query("select * from music m,listening l, playlist p where m.id_music = l.id_music and p.id_playlist = l.id_playlist and l.id_playlist = $id_playlist");
-    $hah = $query->row_array();
-    $name = $hah['p.name'];
-    foreach($query->result_array() as $row){
-    }
-      $xml = new MY_Xml_writer;
-    $xml->setRootName('my_store');
-    $xml->initiate();
-    
-    // Start branch 1
-    $xml->startBranch('cars');
-    
-    // Set branch 1-1 and its nodes
-    $xml->startBranch('car', array('country' => 'usa')); // start branch 1-1
-    $xml->addNode('make', 'Ford');
-    $xml->addNode('model', 'T-Ford', array(), true);
-    $xml->endBranch();
-    
-    // Set branch 1-2 and its nodes
-    $xml->startBranch('car', array('country' => 'Japan')); // start branch
-    $xml->addNode('make', 'Toyota');
-    $xml->addNode('model', 'Corolla', array(), true);
-    $xml->endBranch();
-    
-    // End branch 1
-    $xml->endBranch();
-    
-    // Start branch 2
-    $xml->startBranch('bikes'); // start branch
-    
-    // Set branch 2-1  and its nodes
-    $xml->startBranch('bike', array('country' => 'usa')); // start branch
-    $xml->addNode('make', 'Harley-Davidson');
-    $xml->addNode('model', 'Soft tail', array(), true);
-    $xml->endBranch();
-    
-    // End branch 2
-    $xml->endBranch();
-    
-    // Print the XML to screen
-    $xml->getXml(true);
-    }
-    
            
 }
 

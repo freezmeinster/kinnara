@@ -20,7 +20,7 @@ $view = $row['m.viewed'];
 	<div id="dewplayer_content">
 	<object data="<?php echo base_url();?>style/dewplayer-bubble.swf" width="300" height="80" name="dewplayer" id="dewplayer" type="application/x-shockwave-flash">
 	<param name="movie" value="<?php echo base_url();?>style/dewplayer-bubble.swf" />
-	<param name="flashvars" value="mp3=http://192.168.70.248/kinnara/index.php/lib_kinnara/gen_url/<?php echo $id;?>" />
+	<param name="flashvars" value="autostart=1;mp3=http://192.168.70.248/kinnara/index.php/lib_kinnara/gen_url/<?php echo $id;?>" />
 	<param name="wmode" value="transparent" />
 	</object>
 	</div>
@@ -28,7 +28,8 @@ $view = $row['m.viewed'];
 
 <script type="text/javascript">
 var flashvars = {
-  mp3: "http://192.168.70.248/kinnara/index.php/lib_kinnara/gen_url/<?php echo $id;?>"
+  mp3: "http://192.168.70.248/kinnara/index.php/lib_kinnara/gen_url/<?php echo $id;?>",
+  autostart:1
 };
 var params = {
   wmode: "transparent"

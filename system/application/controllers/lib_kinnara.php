@@ -124,5 +124,9 @@ class Lib_kinnara extends Controller {
     $name = $this->input->post('name');
     $this->system_mp3->create_playlist($id,$name);
     }
+    
+    function get_xml($id){
+    $this->system_mp3->get_xml($id);
+    }
 	  	
 }
