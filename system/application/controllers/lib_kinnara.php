@@ -151,5 +151,23 @@ class Lib_kinnara extends Controller {
     function get_xml($id){
     $this->system_mp3->get_xml($id);
     }
+    
+       function search(){
+    $word = $this->input->post('word');
+    if ($word == ''){
+       $this->system_view->error_report("Please input word to search");
+    }else if ($word != ''){ 
+                $data['word'] = $word;
+                $this->load->view('header');
+		$this->load->view('sidebar');
+                $this->load->view('search_result',$data);
+		$this->load->view('footer');
+
+    }
+    }
+    
+    function error_search(){
+    $this->load->view('search_error');
+    }
 	  	
 }

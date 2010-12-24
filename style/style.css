@@ -20,9 +20,9 @@ h3 { color: #35A1A2;}
 #text h2 {font-size:24px; font-weight:normal; margin:24px 0 8px 0; color:#3096A8;}
 #text ol, #main ul {padding:0; margin:10px 0;}
 #text li {margin-left:40px;}
-#sidebar {width:180px; float:right; margin:6px 45px 30px 30px; display:inline; }
+#sidebar {width:300px; float:right; margin:6px 15px 0px 30px; display:inline;}
 #sidebar h3 {font-size:20px; font-weight:normal; margin:24px 0 8px 0; color:#3096A8;}
-#sidebar ul {margin:0px; padding:0px;}
+#sidebar ul {margin:0px; padding:0px 0px 10px 0px;}
 #sidebar li {list-style:none; padding:1px 0 1px 12px; background:url(images/li.png) 0px 8px no-repeat;}
 
 #footer_menu {height:41px; background:url(images/footer_bg.png) no-repeat; clear:both; text-align:center; color:#FFFFFF; font-size:12px; padding-top:16px;}
@@ -51,6 +51,20 @@ font-size: 12px;
 color: #333333;
 width: 200px;
 height: 20px;
+}
+
+.search {
+border-width: 1px;
+ padding: 0.4em 1em 0.4em 1em;  
+border-style: solid;
+border-color: #399098;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 12px;
+color: #333333;
+-moz-border-radius: 50px;
+border-radius: 50px;
+width: 200px;
+height: 30px;
 }
 
 table.sample {

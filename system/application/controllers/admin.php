@@ -53,8 +53,13 @@ class Admin extends Controller {
 		$this->load->view('admin/video');
 		$this->load->view('admin/footer');;
 	}
+	
         function sysinfo($item){
         $this->system_view->system_info($item);
+        }
+        
+        function userinfo($item){
+        $this->system_view->user_info($item);
         }
 	
 	

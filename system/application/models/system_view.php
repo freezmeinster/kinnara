@@ -131,5 +131,69 @@ class System_view extends Model {
 	}
        }
     }
+    
+    function user_info($item){
+      $id_user = $this->session->userdata('id_user');
+      $site = site_url();
+      if($item == 'news_upload'){
+         echo "<ul padding=\"10\">";
+         $this->db->reconnect();
+         $query = $this->db->query("select * from music order by uploaded_date desc limit 5");
+         foreach ($query->result_array() as $row){
+            $title = $row['title'];
+            $artist = $row['artist'];
+            $id = $row['id_music'];
+            if ($id_user != ''){
+            echo "<li><a href=\"$site/kinnara/play/$id\">$title</a> by $artist</li>";
+            }else if ($id_user == '' ){echo "<li>$title by $artist</li>";}
+         }
+         echo "</ul>";
+      }else if($item == 'populer_upload'){
+        echo "<ul padding=\"10\">";
+         $this->db->reconnect();
+         $query = $this->db->query("select * from music order by viewed desc limit 5");
+         foreach ($query->result_array() as $row){
+            $title = $row['title'];
+            $artist = $row['artist'];
+            $id = $row['id_music'];
+            if ($id_user != ''){
+            echo "<li><a href=\"$site/kinnara/play/$id\">$title</a> by $artist</li>";
+            }else  if ($id_user == '' ){echo "<li>$title by $artist</li>";}
+         }
+         echo "</ul>";
+      }else if($item == 'new_user'){
+        echo "<ul padding=\"10\">";
+         $this->db->reconnect();
+         $query = $this->db->query("select * from user where id_user not like 1 order by reg_date desc limit 5");
+         foreach ($query->result_array() as $row){
+           $name = $row['name'];
+            echo "<li>$name</li>";
+         }
+         echo "</ul>";
+      }else if($item == 'active_user'){
+        echo "<ul padding=\"10\">";
+         $this->db->reconnect();
+         $query = $this->db->query("select u.name,count(m.id_user) as nguk from music m, user u where m.id_user=u.id_user and u.id_user not like 1 group by m.id_user order by nguk desc limit 5");
+         foreach ($query->result_array() as $row){
+           $name = $row['u.name'];
+            echo "<li>$name</li>";
+         }
+         echo "</ul>";
+      }else if($item == "total_upload"){
+        $this->db->reconnect();
+        $query = $this->db->query("select count(*) as total from music");
+        $row = $query->row_array();
+        echo "<ul>";
+        echo "<li>".$row['total']."  Files</li>";
+        echo "</ul>";
+      }else if($item == "total_user"){
+        $this->db->reconnect();
+        $query = $this->db->query("select count(*) as total from user where id_user not like 1");
+        $row = $query->row_array();
+        echo "<ul>";
+        echo "<li>".$row['total']."  people</li>";
+        echo "</ul>";
+      }
+    }
 }
 ?>

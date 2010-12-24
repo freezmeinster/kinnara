@@ -50,7 +50,7 @@ class System_mp3 extends Model {
       $i=0;
       echo "<table cellpadding=\"15\" id=\"content\"><tr>";
       $this->db->reconnect();
-      $query = $this->db->query("select * from music m, category c,user u where u.id_user = m.id_user and c.id_cat = m.id_cat and m.permision = 0 or m.id_user in (SELECT distinct u.id_user FROM user u, join_group j, groups g WHERE j.id_user=u.id_user and j.id_group in (select id_group from join_group where id_user = $id_user)) and m.id_cat = c.id_cat and u.id_user = m.id_user order by uploaded_date desc LIMIT $content_limit OFFSET $hoi");
+      $query = $this->db->query("select * from music m, category c,user u where u.id_user = m.id_user and c.id_cat = m.id_cat and m.permision = 0 order by uploaded_date desc LIMIT $content_limit OFFSET $hoi");
       foreach($query->result_array() as $row){
         $id = $row['m.id_music'];
         $title = $row['m.title'];
@@ -74,7 +74,7 @@ class System_mp3 extends Model {
         }
       }
       echo "</tr></table>";
-      $query2 = $this->db->query("select * from music m, category c,user u where u.id_user = m.id_user and c.id_cat = m.id_cat and m.permision = 0 or m.id_user in (SELECT distinct u.id_user FROM user u, join_group j, groups g WHERE j.id_user=u.id_user and j.id_group in (select id_group from join_group where id_user = $id_user)) and m.id_cat = c.id_cat and u.id_user = m.id_user order by uploaded_date desc");
+      $query2 = $this->db->query("select * from music m, category c,user u where u.id_user = m.id_user and c.id_cat = m.id_cat and m.permision = 0 order by uploaded_date desc");
       $row = $query2->num_rows();
       $hah = ceil($row/$content_limit);
       echo "Page";
@@ -244,6 +244,48 @@ class System_mp3 extends Model {
     
     // Print the XML to screen
     $xml->getXml(true);
+    }
+    
+    function search($word,$page=0){
+     $this->system_user->check_session(1);
+   
+      
+      $this->db->reconnect();
+      $query = $this->db->query("select * from user u, music m, category c where m.id_user=u.id_user and c.id_cat = m.id_cat and id_music in (select id_music from music where title like \"%$word%\" or artist like  \"%$word%\")");
+      if ($query->num_rows()  < 1 ){
+        redirect('lib_kinnara/error_search');
+        }else if ($query->num_rows() > 0 ){ 
+         $limit = 5;
+       $content_limit = 30;
+       $base = base_url();
+       $site = site_url();
+       $hoi = $page*$content_limit;
+       $i=0;
+        echo "<table cellpadding=\"15\" id=\"content\"><tr>";
+        foreach($query->result_array() as $row){
+        $id = $row['m.id_music'];
+        $title = $row['m.title'];
+        $category = $row['c.name'];
+        $artist = $row['m.artist'];
+        $upload = $row['u.name'];
+        $viewed = $row['m.viewed'];
+        if($i < $limit){
+        echo "<td>\n";
+	  echo "<table>";
+	    echo "<tr><td align=\"center\"><a href=\"$site/kinnara/play/$id\">$title</td></tr>\n";
+	    echo "<tr><td align=\"center\"><img src=\"$base/style/images/$category.png\" height=\"70px\" tooltip=\"Uploaded By <br>$upload <br><br> Viewed <br>$viewed Times\"></a></td></tr>\n";
+	    echo "<tr><td align=\"center\">By $artist</td></tr>\n";
+	    echo "<tr><td align=\"center\"><a href=\"$site/lib_kinnara/add_playlist/$id\" class=\"ajax\">Add To Playlist</a></td></tr>\n";
+	  echo "</table>";
+        echo "</td>\n";
+         $i++;
+        }else{
+          echo "</tr><tr>";
+          $i=0;
+        }
+      }
+      echo "</tr></table>";
+      }
     }
     
            

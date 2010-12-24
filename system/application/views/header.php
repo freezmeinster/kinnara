@@ -110,7 +110,6 @@ $password = $GLOBALS['password'];
     echo "<a href=\"$site/kinnara/upload\">Upload</a> &nbsp; | &nbsp;"; 
     echo "<a href=\"$site/kinnara/playlist\">Playlist</a> &nbsp; | &nbsp;";
     echo "<a href=\"$site/kinnara/fresh\">Fresh Music</a> &nbsp; | &nbsp;";
-    echo "<a href=\"$site/kinnara/group\">Group</a> &nbsp; | &nbsp;"; 
     echo "<a href=\"$site/kinnara/search\">Search</a> &nbsp; | &nbsp;"; 
     echo "<a href=\"$site/kinnara/logout\">Logout</a> &nbsp; | &nbsp;";
     if ($GLOBALS['level'] == 0){
