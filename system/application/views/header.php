@@ -7,41 +7,11 @@
   <link href="<?php echo base_url();?>style/style.css" rel="stylesheet" type="text/css"/>  
   <link href="<?php echo base_url();?>style/cupertino/jquery-ui.css" rel="stylesheet" type="text/css"/>   
   <script type="text/javascript" src="<?php echo base_url();?>style/tiny_mce/tiny_mce.js"></script>
-
   <script type="text/javascript" src="<?php echo base_url();?>style/jquery.js"></script>
   <script type="text/javascript" src="<?php echo base_url();?>style/jquery-ui.js"></script>  
-
-  
-  
-   <script type="text/javascript" src="<?php echo base_url();?>style/jquery.qtip.js"></script> 
+  <script type="text/javascript" src="<?php echo base_url();?>style/jquery.qtip.js"></script> 
   <script type="text/javascript" src="<?php echo base_url();?>style/swfobject.js"></script>
- <script type="text/javascript">
-    $(function (){
-        $('a.ajax').click(function() {
-            var url = this.href;
-            var dialog = $('<div style="display:hidden" title="Add Music to Playlist"></div>').appendTo('body');
-            // load remote content
-            dialog.load(
-                url, 
-                {},
-                function (responseText, textStatus, XMLHttpRequest) {
-                    dialog.dialog({
-                    draggable:false,
-                    resizable: false,  
-		    modal: true,  
-		    width: 400,  
-		    height: 200, 
-		    hide: "explode"
-		   
-
-                    });
-                }
-            );
-            //prevent the browser to follow the link
-            return false;
-        });
-    });
-    </script>
+ 
     
     <script type="text/javascript">
 $(function() {
@@ -50,33 +20,6 @@ $(function() {
 </script>
 
 <script type="text/javascript">  
-tinyMCE.init({
-		// General options
-		mode : "exact",
-		elements : "elm",
-		theme : "advanced",
-		skin : "o2k7",
-		skin_variant : "silver",
-		plugins : "pagebreak,style,advhr,advimage,advlink,emotions,iespell,preview,media,searchreplace,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,inlinepopups,autosave",
-
-		// Theme options
-		theme_advanced_buttons1 : "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect",
-		theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview",
-		theme_advanced_toolbar_location : "top",
-		theme_advanced_toolbar_align : "left",
-		theme_advanced_statusbar_location : "bottom",
-		theme_advanced_resizing : false,
-
-		// Example content CSS (should be your site CSS)
-		content_css : "<?php echo base_url();?>style/css/content.css",
-
-		// Drop lists for link/image/media/template dialogs
-		template_external_list_url : "<?php echo base_url();?>style/lists/template_list.js",
-		external_link_list_url : "<?php echo base_url();?>style/lists/link_list.js",
-		external_image_list_url : "<?php echo base_url();?>style/lists/image_list.js",
-		media_external_list_url : "<?php echo base_url();?>style/lists/media_list.js",
-
-	});
 
 </script> 
 </head>

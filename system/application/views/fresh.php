@@ -1,17 +1,49 @@
 <div id="text">
 <script type="text/javascript">
+    $(function (){
+        $('a.ajax').click(function() {
+            var url = this.href;
+            var dialog = $('<div style="display:hidden" title="Add Music to Playlist"></div>').appendTo('body');
+            // load remote content
+            dialog.load(
+                url, 
+                {},
+                function (responseText, textStatus, XMLHttpRequest) {
+                    dialog.dialog({
+                    draggable:false,
+                    resizable: false,  
+		    modal: true,  
+		    width: 400,  
+		    height: 200, 
+		    hide: "explode"
+
+                    });
+                }
+            );
+            //prevent the browser to follow the link
+            return false;
+        });
+    });
+    </script>
+<script type="text/javascript">
 $(document).ready(function() 
 {
    $('#content img[tooltip]').each(function()
    {
       $(this).qtip({
-         content: $(this).attr('tooltip'),
+          content: {
+            text: $(this).attr('tooltip'),
+            },
          position: {
                   corner: {
                      tooltip: 'bottomLeft',
                      target : 'topRight'
                   }
                },
+          show: { 
+            solo: true 
+         },
+         hide: 'unfocus',
           style: {
                   border: {
                      width: 5,

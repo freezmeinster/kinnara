@@ -7,7 +7,7 @@
 <tr><td>Username</td><td>:</td><td><input class="input" name="username" /></td></tr> 			
 <tr><td>Password</td><td>:</td><td><input class="input" name="password" type="password" /></td></tr> 			
 <tr><td>Confirm Password</td><td>:</td><td><input class="input" name="confirm_password" type="password" /></td></tr> 			
-<tr><td><input  type="reset" value="Cencel"/></td><td></td><td><input type="submit" value="Submit"/></td></tr> 		
+<tr><td><input  type="reset" value="Cencel" class="button" /></td><td></td><td><input type="submit" value="Submit" class="button" /></td></tr> 		
 </table>
 </form>
 

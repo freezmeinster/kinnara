@@ -59,6 +59,7 @@ class Lib_kinnara extends Controller {
 	  }
 	  
 	  function add_playlist($id){
+	  
 	  $this->system_user->check_session('1');
 	  $site = site_url();
 	  $id_user = $this->session->userdata('id_user');
@@ -81,7 +82,7 @@ class Lib_kinnara extends Controller {
 	  
 	  echo "</select><input type=\"hidden\" name=\"id_music\" value=\"$id_music\"><br><br>";
 	  echo "Are you sure to add <strong>$name</strong> by <strong>$artist</strong> to your playlist ?<br><br>";
-	  echo "<input type=\"submit\" value=\"Yes\" >";
+	  echo "<input type=\"submit\" value=\"Yes\" class=\"button\">";
 	  echo "</form>";
 	  }
 	  }
@@ -104,7 +105,7 @@ class Lib_kinnara extends Controller {
          $lyrics = $this->input->post('lyrics');
          $target_upload = $this->system_setting->get_setting('mp3dir');
          $config['upload_path'] = "$target_upload";
-	 $config['allowed_types'] = 'mp3|jpg';
+	 $config['allowed_types'] = 'mp3';
 	 $this->load->library('upload', $config);
 	        if ( ! $this->upload->do_upload())
 		{

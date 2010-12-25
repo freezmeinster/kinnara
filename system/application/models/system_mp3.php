@@ -62,7 +62,7 @@ class System_mp3 extends Model {
         echo "<td>\n";
 	  echo "<table>";
 	    echo "<tr><td align=\"center\"><a href=\"$site/kinnara/play/$id\">$title</td></tr>\n";
-	    echo "<tr><td align=\"center\"><img src=\"$base/style/images/$category.png\" height=\"70px\" tooltip=\"Uploaded By <br>$upload <br><br> Viewed <br>$viewed Times\"></a></td></tr>\n";
+	    echo "<tr><td align=\"center\"><img src=\"$base/style/images/$category.png\" height=\"70px\" tooltip=\"Uploaded By <br><a href=>$upload</a> <br><br> Viewed <br>$viewed Times\"></td></tr>\n";
 	    echo "<tr><td align=\"center\">By $artist</td></tr>\n";
 	    echo "<tr><td align=\"center\"><a href=\"$site/lib_kinnara/add_playlist/$id\" class=\"ajax\">Add To Playlist</a></td></tr>\n";
 	  echo "</table>";
