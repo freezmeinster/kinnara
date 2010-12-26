@@ -17,7 +17,7 @@ class System_mp3 extends Model {
     $mp3 = $row['file_name'];
     $url = "$stream_url/$mp3.mp3";
     header("Location:$url");
-     }else $this->system_view->error_report("Sorry we could find your music with id $id_mp3");
+     }else $this->system_view->error_report("Sorry we could find your musics with id $id_mp3");
     }
     
     function register_music($a,$b,$c,$d,$e,$f,$g,$h,$i){
