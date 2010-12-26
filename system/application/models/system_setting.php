@@ -38,7 +38,14 @@ class System_setting extends Model {
    	$reg_date = $row['date'];
    	$baned_status = $row['baned_status'];
    	$level = $row['level'];
-   	  
+   	
+   	 if ($baned_status == 1){
+   	 $baned = "Baned";
+   	 } else if($baned_status == 0){$baned == "Active";}
+   	 
+   	 if($level == 0){
+   	  $lev = "Administrator";
+   	 }else $lev = "User";
        	echo "<tr><td>$username</td><td>$name</td><td>$reg_date</td><td>$baned</td><td>$lev</td><td><a href=\"\" rel=\"facebox\">Edit</a> || <a href=\"\" rel=\"facebox\">Delete</a></td></tr>\n";
    	}
    	echo "</table>\n";

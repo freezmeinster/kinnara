@@ -56,6 +56,31 @@ $(document).ready(function()
 
       });
    });
+   
+   $('[tip]').each(function()
+   {
+      $(this).qtip({
+          content: {
+            text: $(this).attr('tip'),
+            },
+         position: {
+                  corner: {
+                     tooltip: 'bottomLeft',
+                     target : 'topRight'
+                  }
+               },
+          style: {
+                  border: {
+                     width: 5,
+                     radius: 10
+                  },
+                  padding: 10, 
+                  textAlign: 'center',
+                  tip: true, 
+                  name: 'blue' }
+
+      });
+   });
 });
 </script>
 

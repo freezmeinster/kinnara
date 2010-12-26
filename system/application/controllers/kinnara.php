@@ -78,12 +78,14 @@ class Kinnara extends Controller {
 		$this->load->view('footer');
 	}
 	
-	 function group()
+	 function filter($kind = "nothing",$value = '')
 	{
+	        $data['filter']= $kind;
+	        $data['value'] = $value;
 		$this->system_user->check_session('1');
 		$this->load->view('header');
 		$this->load->view('sidebar');
-		$this->load->view('group');
+		$this->load->view('filter',$data);
 		$this->load->view('footer');
 	}
 	

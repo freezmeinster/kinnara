@@ -91,10 +91,15 @@ class System_user extends Model {
     function check_session($permission){
     $user = $this->session->userdata('username');
     $pass = $this->session->userdata('password');
+    if ($permission == 1){
+      $q = "select * from user where username like '$user' and password like '$pass'";
+    }else if($permission == 0){
+     $q = "select * from user where username like '$user' and password like '$pass' and level = $permission";
+    }
 
        if ($user != ''){
            $this->db->reconnect();
-           $query = $this->db->query("select * from user where username like '$user' and password like '$pass' and level = $permission");
+           $query = $this->db->query($q);
           if ($query->num_rows() < 1){
           $this->session->sess_destroy();
             redirect('kinnara/login');
@@ -103,6 +108,7 @@ class System_user extends Model {
        $this->session->sess_destroy();
        redirect('kinnara/login');
        }
+       
     }
     
     function get_user_list(){

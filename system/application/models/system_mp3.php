@@ -128,6 +128,41 @@ class System_mp3 extends Model {
       echo "</tr></table>";
     }
     
+     function filter_mp3_list($id){
+      $this->system_user->check_session(1);
+      $limit = 4;
+      $base = base_url();
+      $site = site_url();
+      $i=0;
+      echo "<table cellpadding=\"15\"><tr>";
+      $this->db->reconnect();
+      $query = $this->db->query("select * from music m , category c where c.id_cat = m.id_cat and m.id_cat = $id");
+      foreach($query->result_array() as $row){
+        $id = $row['m.id_music'];
+        $title = $row['m.title'];
+        $category = $row['c.name'];
+        if($i < $limit){
+        echo "<td>";
+	  echo "<table>";
+	    echo "<tr><td align=\"center\"><a href=\"$site/kinnara/play/$id\">$title</td></tr>";
+	    echo "<tr><td align=\"center\"><img src=\"$base/style/images/$category.png\" height=\"70px\" title=\"$category\"></a></td></tr>";
+	  echo "</table>";
+        echo "</td>";
+         $i++;
+        }else{
+           echo "<td>";
+	  echo "<table>";
+	    echo "<tr><td align=\"center\"><a href=\"$site/kinnara/play/$id\">$title</td></tr>";
+	    echo "<tr><td align=\"center\"><img src=\"$base/style/images/$category.png\" height=\"70px\" title=\"$category\"></a></td></tr>";
+	  echo "</table>";
+        echo "</td>";
+          echo "</tr><tr>";
+          $i=0;
+        }
+      }
+      echo "</tr></table>";
+    }
+    
     function get_cat_legend(){
     $this->system_user->check_session(1);
       $limit = 5;
@@ -139,10 +174,13 @@ class System_mp3 extends Model {
       $query = $this->db->query("select * from category");
       foreach($query->result_array() as $row){
         $category = $row['name'];
+        $id = $row['id_cat'];
+        $tot = $this->db->query("select * from music m, category c where m.id_cat = c.id_cat and c.id_cat = $id");
+        $total = $tot->num_rows();
         if($i < $limit){
         echo "<td>";
 	  echo "<table>\n";
-	    echo "<tr><td align=\"center\"><img src=\"$base/style/images/$category.png\" height=\"70px\" title=\"$category\"></td></tr>\n";
+	    echo "<tr><td align=\"center\"><a href=\"$site/kinnara/filter/category/$id\"><img src=\"$base/style/images/$category.png\" height=\"70px\" tip=\"Total Music for This category is $total musics\"></a></td></tr>\n";
 	    echo "<tr><td align=\"center\">$category</td></tr>\n";
 	  echo "</table>\n";
         echo "</td>";
