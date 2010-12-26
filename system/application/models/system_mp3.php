@@ -42,7 +42,7 @@ class System_mp3 extends Model {
     
     function get_mp3_list($id_user,$page){
       $this->system_user->check_session(1);
-      $limit = 5;
+      $limit = 4;
       $content_limit = 30;
       $base = base_url();
       $site = site_url();
@@ -69,6 +69,14 @@ class System_mp3 extends Model {
         echo "</td>\n";
          $i++;
         }else{
+               echo "<td>\n";
+	      echo "<table>";
+	    echo "<tr><td align=\"center\"><a href=\"$site/kinnara/play/$id\">$title</td></tr>\n";
+	    echo "<tr><td align=\"center\"><img src=\"$base/style/images/$category.png\" height=\"70px\" tooltip=\"Uploaded By <br><a href=>$upload</a> <br><br> Viewed <br>$viewed Times\"></td></tr>\n";
+	    echo "<tr><td align=\"center\">By $artist</td></tr>\n";
+	    echo "<tr><td align=\"center\"><a href=\"$site/lib_kinnara/add_playlist/$id\" class=\"ajax\">Add To Playlist</a></td></tr>\n";
+	  echo "</table>";
+        echo "</td>\n";
           echo "</tr><tr>";
           $i=0;
         }
@@ -87,7 +95,7 @@ class System_mp3 extends Model {
     
       function home_mp3_list($id_user){
       $this->system_user->check_session(1);
-      $limit = 5;
+      $limit = 4;
       $base = base_url();
       $site = site_url();
       $i=0;
@@ -107,6 +115,12 @@ class System_mp3 extends Model {
         echo "</td>";
          $i++;
         }else{
+           echo "<td>";
+	  echo "<table>";
+	    echo "<tr><td align=\"center\"><a href=\"$site/kinnara/play/$id\">$title</td></tr>";
+	    echo "<tr><td align=\"center\"><img src=\"$base/style/images/$category.png\" height=\"70px\" title=\"$category\"></a></td></tr>";
+	  echo "</table>";
+        echo "</td>";
           echo "</tr><tr>";
           $i=0;
         }
