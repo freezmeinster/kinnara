@@ -90,7 +90,8 @@ class Lib_kinnara extends Controller {
 	  function add_music_playlist(){
 	  $playlist = $this->input->post('playlist');
 	  $id_music = $this->input->post('id_music');
-	  $this->system_mp3->add_to_playlist($playlist,$id_music);
+	  $pesan = $this->system_mp3->add_to_playlist($playlist,$id_music);
+	  echo $pesan;
 	  }
 	 
 	 function upload(){
@@ -140,6 +141,20 @@ class Lib_kinnara extends Controller {
     $this->db->reconnect();
     $this->db->query("delete from listening where id_playlist = $id_playlist");
     $this->system_view->success_report("Playlist truncated successfuly ");
+    }
+    
+    function default_playlist($id_playlist){
+    $this->system_user->check_session('1');
+    $this->db->reconnect();
+    $p = $this->db->query("select * from playlist where id_playlist = $id_playlist");
+    $row = $p->row_array();
+    $name = $row['name'];
+    $data = array(
+                   'id_playlist_default'   => $id_playlist,
+                   'playlist_name_default'  => $name
+               );
+    $this->session->set_userdata($data);
+    $this->system_view->success_report("Playlist $name set to default Playlist");
     }
     
     function del_mp3_from_playlist($id_playlist,$id_music){

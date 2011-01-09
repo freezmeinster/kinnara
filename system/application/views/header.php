@@ -8,8 +8,9 @@
   <link href="<?php echo base_url();?>style/cupertino/jquery-ui.css" rel="stylesheet" type="text/css"/>   
   <script type="text/javascript" src="<?php echo base_url();?>style/tiny_mce/tiny_mce.js"></script>
   <script type="text/javascript" src="<?php echo base_url();?>style/jquery.js"></script>
-  <script type="text/javascript" src="<?php echo base_url();?>style/jquery-ui.js"></script>  
+  <script type="text/javascript" src="<?php echo base_url();?>style/jquery-ui.js"></script> 
   <script type="text/javascript" src="<?php echo base_url();?>style/jquery.qtip.js"></script> 
+  <script type="text/javascript" src="<?php echo base_url();?>style/function.js"></script>
   <script type="text/javascript" src="<?php echo base_url();?>style/swfobject.js"></script>
  
     

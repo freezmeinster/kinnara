@@ -1,7 +1,14 @@
 <div id="main">
 <div id="sidebar">
+<h2>Default Playlist</h2>
+<p><?php 
+ $site = site_url();
+ $default = $this->session->userdata('playlist_name_default');
+ $id_playlist = $this->session->userdata('id_playlist_default');
+ echo "<a href=\"$site/kinnara/listen/$id_playlist\" title=\"asas\">$default</a>";
+?></p>
+<br>
 <h2>What's New ?</h2>
-
 <table>
 <tr><td><h3>Music</h3></td></tr>
 <tr><td><strong>Newest Upload</strong></td></tr>

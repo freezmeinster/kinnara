@@ -7,7 +7,7 @@
 <tr><td colspan="3"><input type="submit" value="Create Playlist" class="button"></td></tr>
 </table>
 </form>
-
+<div id="message"></div>
 <h3>Available Playlist</h3>
 <?php 
 $id = $GLOBALS['id'];
