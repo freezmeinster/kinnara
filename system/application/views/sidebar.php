@@ -5,7 +5,7 @@
  $site = site_url();
  $default = $this->session->userdata('playlist_name_default');
  $id_playlist = $this->session->userdata('id_playlist_default');
- echo "<a href=\"$site/kinnara/listen/$id_playlist\" title=\"asas\">$default</a>";
+ echo "<a href=\"$site/kinnara/listen/$id_playlist\" tip=\"Default Playlist, all music will be added here\">$default</a>";
 ?></p>
 <br>
 <h2>What's New ?</h2>

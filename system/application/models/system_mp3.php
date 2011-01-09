@@ -136,7 +136,9 @@ class System_mp3 extends Model {
     
      function filter_mp3_list($id){
       $this->system_user->check_session(1);
-      $limit = 4;
+      $default = $this->session->userdata('playlist_name_default');
+      $id_playlist = $this->session->userdata('id_playlist_default'); 
+      $limit = 3;
       $base = base_url();
       $site = site_url();
       $i=0;
@@ -149,18 +151,24 @@ class System_mp3 extends Model {
         $category = $row['c.name'];
         if($i < $limit){
         echo "<td>";
-	  echo "<table>";
+	    echo "<table ><form id=\"add_playlist$id\" action=\"$site/lib_kinnara/add_music_playlist/\" method=\"POST\">";
+	    echo "<input type=\"hidden\" name=\"playlist\" value=\"$id_playlist\">";
+	    echo "<input type=\"hidden\" name=\"id_music\" value=\"$id\">";
 	    echo "<tr><td align=\"center\"><a href=\"$site/kinnara/play/$id\">$title</td></tr>";
 	    echo "<tr><td align=\"center\"><img src=\"$base/style/images/$category.png\" height=\"70px\" title=\"$category\"></a></td></tr>";
-	  echo "</table>";
+	    echo "<tr><td align=\"center\"><input onclick=\"ngajax($id)\" type=\"button\" value=\"Add To $default\" id=\"add\"></td></tr>\n";
+	    echo "</form></table>";
         echo "</td>";
          $i++;
         }else{
            echo "<td>";
-	  echo "<table>";
+	    echo "<table ><form id=\"add_playlist$id\" action=\"$site/lib_kinnara/add_music_playlist/\" method=\"POST\">";
+	    echo "<input type=\"hidden\" name=\"playlist\" value=\"$id_playlist\">";
+	    echo "<input type=\"hidden\" name=\"id_music\" value=\"$id\">";
 	    echo "<tr><td align=\"center\"><a href=\"$site/kinnara/play/$id\">$title</td></tr>";
 	    echo "<tr><td align=\"center\"><img src=\"$base/style/images/$category.png\" height=\"70px\" title=\"$category\"></a></td></tr>";
-	  echo "</table>";
+	    echo "<tr><td align=\"center\"><input onclick=\"ngajax($id)\" type=\"button\" value=\"Add To $default\" id=\"add\"></td></tr>\n";
+	    echo "</form></table>";
         echo "</td>";
           echo "</tr><tr>";
           $i=0;

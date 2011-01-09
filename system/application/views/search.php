@@ -1,4 +1,5 @@
 <div id="text">
+
 <h1 padding="50px">Search Music Here</h1>
 <br><br>
    <form action="<?php echo site_url();?>/lib_kinnara/search/" method="POST">

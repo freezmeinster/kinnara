@@ -12,10 +12,7 @@ $(document).ready(function()
                      target : 'topRight'
                   }
                },
-          show: { 
-            solo: true 
-         },
-         hide: 'unfocus',
+       
           style: {
                   border: {
                      width: 5,
@@ -29,12 +26,11 @@ $(document).ready(function()
       });
    });
 });   
-   
-   $('[title]').each(function()
-   {
+   $(document).ready(function() {
+     $('[tip]').each(function(){
       $(this).qtip({
           content: {
-            text: $(this).attr('title'),
+            text: $(this).attr('tip'),
             },
          position: {
                   corner: {
@@ -54,6 +50,7 @@ $(document).ready(function()
 
       });
    });
+   }); 
 
    
 

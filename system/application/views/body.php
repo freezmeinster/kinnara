@@ -48,7 +48,7 @@ $website = $row['website'];
 $site = site_url();
  echo "<h1>Your Profile</h1>";
 echo "<div id=\"new_profile\">\n";
-echo "<form action=\"$site/lib_kinnara/edit_profile/echo $id\" method=\"POST\">\n";
+echo "<form action=\"$site/lib_kinnara/edit_profile/$id\" method=\"POST\">\n";
 echo "<table cellpadding=\"10\">\n";
 echo "<tr><td>Sure Name</td><td>:</td><td><input class=\"input\" type=\"text\" name=\"name\" value=\"$name\"></td></tr>\n";
 echo "<tr><td>Email</td><td>:</td><td><input class=\"input\" type=\"text\" name=\"email\" value=\"$email\"></td></tr>\n";
