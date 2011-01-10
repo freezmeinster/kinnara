@@ -99,24 +99,29 @@ class System_mp3 extends Model {
       
     }
     
-      function home_mp3_list($id_user){
+      function home_mp3_list($id_user,$page){
       $this->system_user->check_session(1);
-      $limit = 4;
+      $limit = 3;
+      $content_limit = 12;
       $base = base_url();
       $site = site_url();
+      $hoi = $page*$content_limit;
       $i=0;
       echo "<table cellpadding=\"15\"><tr>";
       $this->db->reconnect();
-      $query = $this->db->query("select * from music m , category c where c.id_cat = m.id_cat and m.id_user = $id_user");
+      $query = $this->db->query("select * from music m , category c where c.id_cat = m.id_cat and m.id_user = $id_user LIMIT $content_limit OFFSET $hoi");
       foreach($query->result_array() as $row){
         $id = $row['m.id_music'];
         $title = $row['m.title'];
         $category = $row['c.name'];
+        $artist = $row['m.artist'];
+        $viewed = $row['m.viewed'];
         if($i < $limit){
         echo "<td>";
 	  echo "<table>";
 	    echo "<tr><td align=\"center\"><a href=\"$site/kinnara/play/$id\">$title</td></tr>";
-	    echo "<tr><td align=\"center\"><img src=\"$base/style/images/$category.png\" height=\"70px\" title=\"$category\"></a></td></tr>";
+	    echo "<tr><td align=\"center\"><img src=\"$base/style/images/$category.png\" height=\"70px\" tip=\"Viewed $viewed times\"></a></td></tr>";
+	    echo "<tr><td align=\"center\">By $artist</td></tr>";
 	  echo "</table>";
         echo "</td>";
          $i++;
@@ -124,7 +129,8 @@ class System_mp3 extends Model {
            echo "<td>";
 	  echo "<table>";
 	    echo "<tr><td align=\"center\"><a href=\"$site/kinnara/play/$id\">$title</td></tr>";
-	    echo "<tr><td align=\"center\"><img src=\"$base/style/images/$category.png\" height=\"70px\" title=\"$category\"></a></td></tr>";
+	    echo "<tr><td align=\"center\"><img src=\"$base/style/images/$category.png\" height=\"70px\" tip=\"Viewed $viewed times\"></a></td></tr>";
+	    echo "<tr><td align=\"center\">By $artist</td></tr>";
 	  echo "</table>";
         echo "</td>";
           echo "</tr><tr>";
@@ -132,6 +138,14 @@ class System_mp3 extends Model {
         }
       }
       echo "</tr></table>";
+      $query2 = $this->db->query("select * from music m , category c where c.id_cat = m.id_cat and m.id_user = $id_user");
+      $row = $query2->num_rows();
+      $hah = ceil($row/$content_limit);
+      echo "Page";
+      for ($m = 1;$m <= $hah; $m++){
+      $wew = $m-1;
+      echo "  <a href=\"$site/kinnara/index/".$wew."\">$m</a>";
+      }
     }
     
      function filter_mp3_list($id){

@@ -7,9 +7,10 @@ class Kinnara extends Controller {
 		parent::Controller();	
 	}
 	
-	function index()
+	function index($page=0)
 	{
 		$data['static'] = "index"; 
+		$data['page'] = $page;
 		$this->load->view('header');
 		$this->load->view('sidebar');
 		$this->load->view('body',$data);

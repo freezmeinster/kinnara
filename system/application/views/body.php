@@ -74,7 +74,7 @@ echo "</div>\n";
   echo "<button class=\"button\" id=\"edit_profile\">Edit Profile</button> <button class=\"button\" id=\"edit_password\">Edit Password</button>\n";
   echo "</div>";
   echo "<h1>Your Music</h1>\n";
-  $this->system_mp3->home_mp3_list($id);
+  $this->system_mp3->home_mp3_list($id,$page);
 }
 ?>
 
