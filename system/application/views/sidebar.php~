@@ -3,11 +3,10 @@
 
 <p><?php 
  $ada = $this->session->userdata('id_user');
- $default = $this->session->userdata('playlist_name_default');
- if ($ada != '' && $default != ''){
+ if ($ada != ''){
  $site = site_url();
  echo "<h2>Default Playlist</h2>";
- 
+ $default = $this->session->userdata('playlist_name_default');
  $id_playlist = $this->session->userdata('id_playlist_default');
  $a = $this->db->query("select * from listening where id_playlist = $id_playlist");
  $total = $a->num_rows();
