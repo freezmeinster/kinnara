@@ -61,6 +61,8 @@ $view = $row['m.viewed'];
 <tr><td>Album</td><td>:</td><td><input type="text" value="<?php echo $album;?>" class="input"></td></tr>
 <tr><td>Genre</td><td>:</td><td><?php $this->system_view->get_cat();?></td></tr>
 <tr><td>Lyrics</td><td></td><td></td></tr>
-<tr><td colspan="3"><textarea id="elm">asdfasdf</textarea ></td></tr>
+<tr><td colspan="3"><textarea id="elm">asdfasdf</textarea></td></tr>
 </table>
 </div>
+
+<div id="del_dialog" style="display:none;">Yakin mau hapus ?</div>

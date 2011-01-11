@@ -133,6 +133,11 @@ class Lib_kinnara extends Controller {
     $this->db->reconnect();
     $this->db->query("delete from playlist where id_playlist = $id_playlist");
     $this->db->query("delete from listening where id_playlist = $id_playlist");
+    $data = array(
+                   'id_playlist_default'   => '',
+                   'playlist_name_default'  => ''
+               );
+    $this->session->set_userdata($data);
     $this->system_view->success_report("Playlist deleted successfuly");
     }
     
@@ -145,6 +150,7 @@ class Lib_kinnara extends Controller {
     
     function default_playlist($id_playlist){
     $this->system_user->check_session('1');
+    $id_user = $this->session->userdata("id_user");
     $this->db->reconnect();
     $p = $this->db->query("select * from playlist where id_playlist = $id_playlist");
     $row = $p->row_array();
@@ -153,6 +159,8 @@ class Lib_kinnara extends Controller {
                    'id_playlist_default'   => $id_playlist,
                    'playlist_name_default'  => $name
                );
+    $this->db->reconnect();
+    $this->db->query("update user set playlist = $id_playlist where id_user = $id_user");
     $this->session->set_userdata($data);
     $this->system_view->success_report("Playlist $name set to default Playlist");
     }

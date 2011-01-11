@@ -44,7 +44,7 @@ class System_mp3 extends Model {
     function get_mp3_list($id_user,$page){
       $this->system_user->check_session(1);
       $default = $this->session->userdata('playlist_name_default');
-      $id_playlist = $this->session->userdata('id_playlist_default');
+     
       $limit = 2;
       $content_limit = 18;
       $base = base_url();
@@ -61,6 +61,10 @@ class System_mp3 extends Model {
         $artist = $row['m.artist'];
         $upload = $row['u.name'];
         $viewed = $row['m.viewed'];
+         $id_playlist = $this->session->userdata('id_playlist_default');
+      if ($id_playlist != ''){
+       $button = "<tr><td align=\"center\"><input onclick=\"ngajax($id)\" type=\"button\" value=\"Add To $default\" id=\"add\"></td></tr>\n";
+      }else $button = "";
         if($i < $limit){
         echo "<td>\n";
 	  echo "<table><form id=\"add_playlist$id\" action=\"$site/lib_kinnara/add_music_playlist/\" method=\"POST\">";
@@ -69,7 +73,7 @@ class System_mp3 extends Model {
 	    echo "<tr><td align=\"center\"><a href=\"$site/kinnara/play/$id\">$title</td></tr>\n";
 	    echo "<tr><td align=\"center\"><img src=\"$base/style/images/$category.png\" height=\"70px\" tooltip=\"Uploaded By <br><a href=>$upload</a> <br><br> Viewed <br>$viewed Times\"></td></tr>\n";
 	    echo "<tr><td align=\"center\">By $artist</td></tr>\n";
-	    echo "<tr><td align=\"center\"><input onclick=\"ngajax($id)\" type=\"button\" value=\"Add To $default\" id=\"add\"></td></tr>\n";
+	    echo $button;
 	  echo "</form></table>";
         echo "</td>\n";
          $i++;
@@ -81,7 +85,7 @@ class System_mp3 extends Model {
 	    echo "<tr><td align=\"center\"><a href=\"$site/kinnara/play/$id\">$title</td></tr>\n";
 	    echo "<tr><td align=\"center\"><img src=\"$base/style/images/$category.png\" height=\"70px\" tooltip=\"Uploaded By <br><a href=>$upload</a> <br><br> Viewed <br>$viewed Times\"></td></tr>\n";
 	    echo "<tr><td align=\"center\">By $artist</td></tr>\n";
-	    echo "<tr><td align=\"center\"><input onclick=\"ngajax($id)\" type=\"button\" value=\"Add To $default\" id=\"add\"></td></tr>\n";
+	    echo $button;
 	  echo "</form></table>";
         echo "</td>\n";
           echo "</tr><tr>";
@@ -102,6 +106,7 @@ class System_mp3 extends Model {
     
       function home_mp3_list($id_user,$page){
       $this->system_user->check_session(1);
+      
       $limit = 2;
       $content_limit = 18;
       $base = base_url();
@@ -153,6 +158,9 @@ class System_mp3 extends Model {
       $this->system_user->check_session(1);
       $default = $this->session->userdata('playlist_name_default');
       $id_playlist = $this->session->userdata('id_playlist_default'); 
+       if ($id_playlist != ''){
+       $button = "<tr><td align=\"center\"><input onclick=\"ngajax($id)\" type=\"button\" value=\"Add To $default\" id=\"add\"></td></tr>\n";
+      }else $button = "";
       $limit = 2;
       $content_limit = 18;
       $base = base_url();
@@ -172,7 +180,7 @@ class System_mp3 extends Model {
 	    echo "<input type=\"hidden\" name=\"id_music\" value=\"$id\">";
 	    echo "<tr><td align=\"center\"><a href=\"$site/kinnara/play/$id\">$title</td></tr>";
 	    echo "<tr><td align=\"center\"><img src=\"$base/style/images/$category.png\" height=\"70px\" title=\"$category\"></a></td></tr>";
-	    echo "<tr><td align=\"center\"><input onclick=\"ngajax($id)\" type=\"button\" value=\"Add To $default\" id=\"add\"></td></tr>\n";
+	    echo $button;
 	    echo "</form></table>";
         echo "</td>";
          $i++;
@@ -183,7 +191,7 @@ class System_mp3 extends Model {
 	    echo "<input type=\"hidden\" name=\"id_music\" value=\"$id\">";
 	    echo "<tr><td align=\"center\"><a href=\"$site/kinnara/play/$id\">$title</td></tr>";
 	    echo "<tr><td align=\"center\"><img src=\"$base/style/images/$category.png\" height=\"70px\" title=\"$category\"></a></td></tr>";
-	    echo "<tr><td align=\"center\"><input onclick=\"ngajax($id)\" type=\"button\" value=\"Add To $default\" id=\"add\"></td></tr>\n";
+	    echo $button;
 	    echo "</form></table>";
         echo "</td>";
           echo "</tr><tr>";
@@ -210,7 +218,7 @@ class System_mp3 extends Model {
         if($i < $limit){
         echo "<td>";
 	  echo "<table>\n";
-	    echo "<tr><td align=\"center\"><a href=\"$site/kinnara/filter/category/$id\"><img src=\"$base/style/images/$category.png\" height=\"70px\" tip=\"Total Music for This category is $total musics\"></a></td></tr>\n";
+	    echo "<tr><td align=\"center\"><a href=\"$site/kinnara/filter/category/$id\"><img src=\"$base/style/images/$category.png\" height=\"70px\" tip=\"$total musics in  $category\"></a></td></tr>\n";
 	    echo "<tr><td align=\"center\">$category</td></tr>\n";
 	  echo "</table>\n";
         echo "</td>";
@@ -239,7 +247,7 @@ class System_mp3 extends Model {
     $query = $this->db->query("select * from playlist where id_user = $id and name like \"%$name%\"");
     $row = $query->num_rows();
     if ($row > 0){
-     $this->system_view->error_report("Sorry Playlist $name already exist, Please user other name !");
+     $this->system_view->error_report("Sorry Playlist $name already exist, Please use other name !");
     }else if($name == ''){
      $this->system_view->error_report("Please fill Playlist name !");
     }else if( $name != ''){
@@ -253,6 +261,7 @@ class System_mp3 extends Model {
     $site = site_url();
     $this->db->reconnect();
     $default = $this->session->userdata('id_playlist_default');
+    
     $query = $this->db->query("select * from playlist where id_user = $id");
     	foreach($query->result_array() as $row){
     	     $name = $row['name'];
@@ -339,7 +348,10 @@ class System_mp3 extends Model {
     function search($word,$page=0){
      $this->system_user->check_session(1);
      $default = $this->session->userdata('playlist_name_default');
-      $id_playlist = $this->session->userdata('id_playlist_default');     
+      $id_playlist = $this->session->userdata('id_playlist_default'); 
+       if ($id_playlist != ''){
+       $button = "<tr><td align=\"center\"><input onclick=\"ngajax($id)\" type=\"button\" value=\"Add To $default\" id=\"add\"></td></tr>\n";
+      }else $button = "";
       $this->db->reconnect();
       $query = $this->db->query("select * from user u, music m, category c where m.id_user=u.id_user and c.id_cat = m.id_cat and id_music in (select id_music from music where title like \"%$word%\" or artist like  \"%$word%\")");
       if ($query->num_rows()  < 1 ){
@@ -367,7 +379,7 @@ class System_mp3 extends Model {
 	    echo "<tr><td align=\"center\"><a href=\"$site/kinnara/play/$id\">$title</td></tr>\n";
 	    echo "<tr><td align=\"center\"><img src=\"$base/style/images/$category.png\" height=\"70px\" tooltip=\"Uploaded By <br>$upload <br><br> Viewed <br>$viewed Times\"></a></td></tr>\n";
 	    echo "<tr><td align=\"center\">By $artist</td></tr>\n";
-	    echo "<tr><td align=\"center\"><input onclick=\"ngajax($id)\" type=\"button\" value=\"Add To $default\" id=\"add\"></td></tr>\n";
+	    echo $button;
 	  echo "</form></table>";
         echo "</td>\n";
          $i++;

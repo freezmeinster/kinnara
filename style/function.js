@@ -63,7 +63,9 @@ function ngajax(id){
    cache: false,	  
    dataType: 'script',
    success: function(data) {
-   $('.pesan').html('<h2>'+data+'</h2>');	  
+  $('.pesan').hide().html('<h3>'+data+'</h3>').show('slow',function() {
+      $('.pesan').hide('slow');
+    });
   }
  });
 return false;

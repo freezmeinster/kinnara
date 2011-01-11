@@ -54,6 +54,7 @@ swfobject.embedSWF("<?php echo base_url();?>style/dewplayer-bubble.swf", "dewpla
 <?php
 if ($id_user == $ids){
   echo "<button class=\"button\" id=\"nguk\">Edit Music</button>";
+  echo "<button class=\"button\" id=\"del_music\">Delete Music</button>";
 }
 ?>
 </div>

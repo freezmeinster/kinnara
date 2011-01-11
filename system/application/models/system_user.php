@@ -68,9 +68,19 @@ class System_user extends Model {
 	  $wew = $this->db->query("select * from user where username like \"$username\" and password like \"$enc_pass\" and baned_status = 0");
 	  if ($wew->num_rows() > 0){
            $row = $query->row_array();
+           $id_playlist = $row['playlist'];
+           if ($id_playlist != ''){
+           $this->db->reconnect();
+           $data = $this->db->query("select * from playlist where id_playlist = $id_playlist");
+           $w = $data->row_array();
+           $playlist_name = $w['name'];
+           }else  $playlist_name = '';
+          
            $data = array(
                    'id_user'   => $row['id_user'],
                    'username'  => $row['username'],
+                   'id_playlist_default' => $id_playlist,
+                   'playlist_name_default' => $playlist_name,
                    'password'  => $row['password']
                );
            $this->session->set_userdata($data);
