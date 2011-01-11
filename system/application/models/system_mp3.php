@@ -1,9 +1,10 @@
 <?php
 class System_mp3 extends Model {
-
+        
     function System_mp3()
     {
         parent::Model();
+        
     }
     
     function gen_url($a){
@@ -44,8 +45,8 @@ class System_mp3 extends Model {
       $this->system_user->check_session(1);
       $default = $this->session->userdata('playlist_name_default');
       $id_playlist = $this->session->userdata('id_playlist_default');
-      $limit = 3;
-      $content_limit = 30;
+      $limit = 2;
+      $content_limit = 18;
       $base = base_url();
       $site = site_url();
       $hoi = $page*$content_limit;
@@ -101,8 +102,8 @@ class System_mp3 extends Model {
     
       function home_mp3_list($id_user,$page){
       $this->system_user->check_session(1);
-      $limit = 3;
-      $content_limit = 12;
+      $limit = 2;
+      $content_limit = 18;
       $base = base_url();
       $site = site_url();
       $hoi = $page*$content_limit;
@@ -152,7 +153,8 @@ class System_mp3 extends Model {
       $this->system_user->check_session(1);
       $default = $this->session->userdata('playlist_name_default');
       $id_playlist = $this->session->userdata('id_playlist_default'); 
-      $limit = 3;
+      $limit = 2;
+      $content_limit = 18;
       $base = base_url();
       $site = site_url();
       $i=0;
@@ -343,8 +345,8 @@ class System_mp3 extends Model {
       if ($query->num_rows()  < 1 ){
         redirect('lib_kinnara/error_search');
         }else if ($query->num_rows() > 0 ){ 
-         $limit = 4;
-       $content_limit = 30;
+       $limit = 2;
+       $content_limit = 18;
        $base = base_url();
        $site = site_url();
        $hoi = $page*$content_limit;

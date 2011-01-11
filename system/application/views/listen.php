@@ -12,7 +12,7 @@ echo "<h1>Now Playing $name Playlist</h1><br><br>\n"
 	<object type="application/x-shockwave-flash" data="<?php echo base_url();?>style/dewplayer-playlist.swf" width="240" height="200" id="dewplayer" name="dewplayer">
 	<param name="wmode" value="transparent" />
 	<param name="movie" value="<?php echo base_url();?>style/dewplayer-playlist.swf" />
-	<param name="flashvars" value="autoplay=1&showtime=1&autoreplay=1&xml=<?php echo "$site/lib_kinnara/get_xml/$id_playlist";?>" />
+	<param name="flashvars" value="randomplay=1&autoplay=1&showtime=1&autoreplay=1&xml=<?php echo "$site/lib_kinnara/get_xml/$id_playlist";?>" />
 	</object>
 
 </div>
