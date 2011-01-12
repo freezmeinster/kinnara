@@ -63,9 +63,12 @@ function ngajax(id){
    cache: false,	  
    dataType: 'script',
    success: function(data) {
-  $('.pesan').hide().html('<h3>'+data+'</h3>').show('slow',function() {
-      $('.pesan').hide('slow');
-    });
+			$.gritter.add({
+				title: data,
+				text: data,
+				sticky: false, 
+				time: ''
+			});
   }
  });
 return false;
@@ -103,5 +106,3 @@ $(function(){
 $('select').customStyle();
 
 });
-
-
