@@ -12,6 +12,14 @@
  $a = $this->db->query("select * from listening where id_playlist = $id_playlist");
  $total = $a->num_rows();
  echo "<a href=\"$site/kinnara/listen/$id_playlist\" tip=\"Default Playlist, all music will be added here. <br><br> Total $total Musics\">$default</a>";
+ 
+ echo "<br><h2>Search Music</h2>"; 
+ echo "<form action=\"$site/lib_kinnara/search/\" method=\"POST\">";
+ echo "<table>";
+ echo "<tr><td><input type=\"text\" name=\"word\" class=\"input\" tip=\"Search your favorite music here, just enter song title or artist name and press 'Search'\"></td></tr>";
+ echo "<tr><td><input type=\"submit\" value=\"Search\" class=\"button\"></td></tr>";
+ echo "</table>";
+ echo "</form>";
  }
 ?></p>
 <br>

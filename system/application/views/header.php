@@ -55,8 +55,7 @@ $password = $GLOBALS['password'];
     $GLOBALS['level'] = $row['level']; 
     echo "<a href=\"$site/kinnara/upload\">Upload</a> &nbsp; | &nbsp;"; 
     echo "<a href=\"$site/kinnara/playlist\">Playlist</a> &nbsp; | &nbsp;";
-    echo "<a href=\"$site/kinnara/fresh\">Fresh Music</a> &nbsp; | &nbsp;";
-    echo "<a href=\"$site/kinnara/search\">Search</a> &nbsp; | &nbsp;"; 
+    echo "<a href=\"$site/kinnara/fresh\">Fresh Music</a> &nbsp; | &nbsp;"; 
     echo "<a href=\"$site/kinnara/logout\">Logout</a> &nbsp; | &nbsp;";
     if ($GLOBALS['level'] == 0){
     echo "<a href=\"$site/admin\">Admin</a> &nbsp; | &nbsp;";

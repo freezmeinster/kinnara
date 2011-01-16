@@ -1,5 +1,5 @@
 <div id="text">
-<h1 padding="50px">Your Play List</h1>
+<h1 padding="50px">Your Playlist</h1>
 <h3>Create New Playlist</h3>
 <form action="<?php echo site_url();?>/lib_kinnara/create_playlist/" method="POST">
 <table cellpadding="10">

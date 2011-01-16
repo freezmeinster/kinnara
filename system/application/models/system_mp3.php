@@ -269,7 +269,7 @@ class System_mp3 extends Model {
     	     if ($id_playlist == $default){
     	      $m = "( Default Playlist )";
     	     }else $m ='';
-    	     echo "<h4><a href=\"$site/kinnara/listen/$id_playlist\">$name $m</h4> <a href=\"$site/lib_kinnara/del_playlist/$id_playlist\">Delete Playlist</a> || <a href=\"$site/lib_kinnara/empty_playlist/$id_playlist\">Empty Playlist</a> || <a href=\"$site/lib_kinnara/default_playlist/$id_playlist\">Set To Default Playlist</a>";
+    	     echo "<h4><a href=\"$site/kinnara/listen/$id_playlist\" target=\"blank\">$name $m</h4> <a href=\"$site/lib_kinnara/del_playlist/$id_playlist\">Delete Playlist</a> || <a href=\"$site/lib_kinnara/empty_playlist/$id_playlist\">Empty Playlist</a> || <a href=\"$site/lib_kinnara/default_playlist/$id_playlist\">Set To Default Playlist</a>";
     	     echo "<table id=\"perlu\" cellpadding=\"5\">";
     	     echo "<tr><th>No</th><th>Music</th><th>Artist</th><th>Action</th></tr>";
     	     $this->db->reconnect();
