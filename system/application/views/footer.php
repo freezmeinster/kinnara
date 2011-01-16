@@ -22,7 +22,7 @@ $password = $this->session->userdata('password');
 </div>
 <div id="footer">
 Copyright 2010 Kinnara.
-Design by <a href="http://www.ondieting.com/">On Dieting</a>. Program by Glue Network Developer
+Design by <a href="http://www.ondieting.com/">On Dieting</a>. Program by <a href="http://glue.bramandityo.com" target="blank">Glue Network Developer</a>
 </div>
 </div>
 </body>
