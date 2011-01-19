@@ -10,7 +10,7 @@
 |	http://example.com/
 |
 */
-$config['base_url']	= "http://192.168.70.248/kinnara";
+$config['base_url']	= "http://kinnara.cs.int-upi.edu/";
 
 /*
 |--------------------------------------------------------------------------

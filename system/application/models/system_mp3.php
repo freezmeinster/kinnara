@@ -63,7 +63,7 @@ class System_mp3 extends Model {
         $viewed = $row['m.viewed'];
          $id_playlist = $this->session->userdata('id_playlist_default');
       if ($id_playlist != ''){
-       $button = "<tr><td align=\"center\"><input onclick=\"ngajax($id)\" type=\"button\" value=\"Add To $default\" id=\"add\"></td></tr>\n";
+       $button = "<tr><td align=\"center\"><input onclick=\"ngajax($id)\" type=\"button\" value=\"Add To $default\" id=\"add\" class=\"button\"></td></tr>\n";
       }else $button = "";
         if($i < $limit){
         echo "<td>\n";
@@ -159,7 +159,7 @@ class System_mp3 extends Model {
       $default = $this->session->userdata('playlist_name_default');
       $id_playlist = $this->session->userdata('id_playlist_default'); 
        if ($id_playlist != ''){
-       $button = "<tr><td align=\"center\"><input onclick=\"ngajax($id)\" type=\"button\" value=\"Add To $default\" id=\"add\"></td></tr>\n";
+       $button = "<tr><td align=\"center\"><input onclick=\"ngajax($id)\" class=\"button\" type=\"button\" value=\"Add To $default\" id=\"add\"></td></tr>\n";
       }else $button = "";
       $limit = 2;
       $content_limit = 18;
@@ -370,7 +370,7 @@ class System_mp3 extends Model {
         $upload = $row['u.name'];
         $viewed = $row['m.viewed'];
          if ($id_playlist != ''){
-       $button = "<tr><td align=\"center\"><input onclick=\"ngajax($id)\" type=\"button\" value=\"Add To $default\" id=\"add\"></td></tr>\n";
+       $button = "<tr><td align=\"center\"><input onclick=\"ngajax($id)\" class=\"button\" type=\"button\" value=\"Add To $default\" id=\"add\"></td></tr>\n";
       }else $button = "";
         if($i < $limit){
         echo "<td>\n";
