@@ -11,7 +11,7 @@
 |
 */
 $config['base_url']	= "http://kinnara.cs.int-upi.edu/";
-
+$config['stream_url'] = "http://kinnara.cs.int-upi.edu/mp3"; 
 /*
 |--------------------------------------------------------------------------
 | Index File

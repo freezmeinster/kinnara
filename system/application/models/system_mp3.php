@@ -10,7 +10,7 @@ class System_mp3 extends Model {
     function gen_url($a){
     $id_mp3 = strip_quotes($a);
     $this->system_user->check_session(1);
-    $stream_url = $this->system_setting->get_setting('stream_url');
+    $stream_url = $this->config->item('stream_url');
     $this->db->reconnect();
     $query = $this->db->query("select * from music where id_music = $id_mp3");
     if ($query->num_rows() > 0){
